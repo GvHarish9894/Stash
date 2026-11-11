@@ -1,0 +1,53 @@
+# Run on a fresh launch: maestro test .maestro/03_settings_widget_language.yaml  (iOS: export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer)
+appId: com.techgv.stash.Stash
+---
+- tapOn: ".*Designing for slow reading.*"
+- assertVisible: "Mark unread"
+- takeScreenshot: 13_reader_statusbar
+- tapOn: "Close and return to Stash"
+- extendedWaitUntil:
+    visible: "Keep reading"
+    timeout: 5000
+- tapOn: "Keep reading"
+- tapOn: "Settings"
+- assertVisible: "APPEARANCE"
+- tapOn: "Night library"
+- tapOn: "Forest"
+- tapOn: "Compact"
+- takeScreenshot: 14_settings_dark
+- scrollUntilVisible:
+    element: "Home-screen widget"
+    direction: DOWN
+- tapOn: "Home-screen widget"
+- assertVisible: "Add to home screen"
+- tapOn: "Small 2×2"
+- takeScreenshot: 15_widget
+- tapOn: "Add to home screen"
+- assertVisible: "Pin request sent to your launcher"
+- tapOn: "Back to settings"
+- waitForAnimationToEnd
+- swipe:
+    start: 200, 750
+    end: 200, 150
+    duration: 500
+- swipe:
+    start: 200, 750
+    end: 200, 150
+    duration: 500
+- swipe:
+    start: 200, 750
+    end: 200, 150
+    duration: 500
+- swipe:
+    start: 200, 750
+    end: 200, 150
+    duration: 500
+- swipe:
+    start: 200, 750
+    end: 200, 150
+    duration: 500
+- tapOn: "Español"
+- tapOn: "Back to shelf"
+- assertVisible: "Busca en tu estante"
+- assertVisible: "HOY"
+- takeScreenshot: 16_home_es_dark_compact

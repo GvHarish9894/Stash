@@ -73,24 +73,27 @@ data class Prefs(
     val widgetSize: WidgetSize = WidgetSize.Medium,
 )
 
+/** Monogram for video items; drawn as a triangle by `Mono` (iOS renders "▶" as an emoji). */
+const val PLAY = "▶"
+
 /** A page "shared" to Stash in the share demo. */
 data class ShareSample(val title: String, val site: String, val src: String, val tile: Long, val mono: String, val meta: String)
 
 val shareSamples = listOf(
     ShareSample("The quiet return of serif type on screens", "example-blog.com", "example-blog", 0xFF6E5D49, "T", "just now · 5 min read"),
     ShareSample("Kotlin coroutines: structured concurrency in practice", "medium.com", "Medium", 0xFF7A4E2D, "K", "just now · 12 min read"),
-    ShareSample("Building a reading list app in a weekend", "youtube.com", "YouTube", 0xFF3F5E4A, "▶", "just now · 21 min video"),
+    ShareSample("Building a reading list app in a weekend", "youtube.com", "YouTube", 0xFF3F5E4A, PLAY, "just now · 21 min video"),
 )
 
 // shortcut: in-memory demo shelf from the design; replace with persisted storage when the data layer lands.
 val sampleItems = listOf(
     Item("a", "Designing for slow reading in a fast feed", "medium.com", "Medium", "2h ago · 7 min read", 0xFF7A4E2D, "D",
         desc = "Why the fastest feeds leave the least behind, and what calm interfaces do differently.", daysAgo = 0),
-    Item("b", "Shared element transitions in Compose, explained", "youtube.com", "YouTube", "4h ago · 18 min video", 0xFF3F5E4A, "▶",
+    Item("b", "Shared element transitions in Compose, explained", "youtube.com", "YouTube", "4h ago · 18 min video", 0xFF3F5E4A, PLAY,
         desc = "A walkthrough of SharedTransitionLayout and sharedBounds, with the pitfalls to avoid.", daysAgo = 0),
     Item("c", "Room full-text search on Android: FTS4 vs FTS5", "dev.to", "dev.to", "6 min read", 0xFFB8893B, "R", ink = 0xFF3B2F23,
         desc = "When the newer engine is worth it, and when FTS4 is all a mobile app needs.", daysAgo = 1),
-    Item("d", "Spring physics for Compose micro-interactions", "youtube.com", "YouTube", "11 min video", 0xFF8B2E2A, "▶",
+    Item("d", "Spring physics for Compose micro-interactions", "youtube.com", "YouTube", "11 min video", 0xFF8B2E2A, PLAY,
         desc = "Tuning damping and stiffness so interactions feel physical without feeling slow.", daysAgo = 1),
     Item("e", "paper-grain: tileable textures for app backgrounds", "github.com", "GitHub", "repository", 0xFF3B2F23, "P",
         desc = "Seamless paper and grain textures sized for mobile backgrounds.", daysAgo = 5, read = true, readAgo = 12),
@@ -102,7 +105,7 @@ val sampleItems = listOf(
     Item("h", "A field guide to WorkManager constraints", "dev.to", "dev.to", "10 min read", 0xFFB8893B, "W", ink = 0xFF3B2F23,
         desc = "Practical patterns for network, battery and idle constraints.", daysAgo = 24, read = true,
         archived = true, archLabel = "Archived Oct 21", archMonth = "Earlier"),
-    Item("i", "Designing calm notifications", "youtube.com", "YouTube", "14 min video", 0xFF3F5E4A, "▶",
+    Item("i", "Designing calm notifications", "youtube.com", "YouTube", "14 min video", 0xFF3F5E4A, PLAY,
         desc = "How to design notifications people keep switched on.", daysAgo = 45, read = true,
         archived = true, archLabel = "Archived Sep 30", archMonth = "Earlier"),
 )

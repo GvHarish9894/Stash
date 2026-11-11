@@ -53,6 +53,7 @@ import com.techgv.stash.ui.components.BackButton
 import com.techgv.stash.ui.components.GroupHeader
 import com.techgv.stash.ui.components.MarkColor
 import com.techgv.stash.ui.components.StashIcons
+import com.techgv.stash.ui.components.Mono
 import com.techgv.stash.ui.components.Txt
 import com.techgv.stash.ui.components.contentWidth
 import com.techgv.stash.ui.components.dashedBorder
@@ -186,7 +187,7 @@ private fun ResultCard(i: Item, q: String, onOpen: () -> Unit) {
             Modifier.size(52.dp).clip(RoundedCornerShape(10.dp))
                 .background(androidx.compose.ui.graphics.Color(i.tile).copy(alpha = if (i.archived) 0.7f else if (i.read) 0.55f else 1f)),
             contentAlignment = Alignment.Center,
-        ) { Txt(i.mono, lora(22, 700), androidx.compose.ui.graphics.Color(i.ink)) }
+        ) { Mono(i.mono, 22, androidx.compose.ui.graphics.Color(i.ink)) }
         Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
             Text(
                 highlighted(splitMatch(i.title, q), MarkColor), color = if (i.read) c.faded else c.ink,

@@ -123,7 +123,7 @@ ui/Overlays.kt              item menu sheet, streak sheet, celebration, notifica
 All checklist items are built and checked on the Resizable_Experimental emulator (phone + tablet, light + dark).
 Known gaps, kept as small follow-ups:
 - In-memory data only (resets on process death); no real share intent, web content, notifications or widget.
-- iOS keeps the system status-bar style (`SystemBars.ios.kt`); Android follows the app theme.
+- iOS edge-swipe back is not verified: XCTest/Maestro synthetic swipes do not trigger UIKit's edge-pan recognizer. Check by hand.
 - Undo / notification timers do not pause while focused (the prototype pauses on hover/focus).
 - The level-4 nudge pulse loops instead of stopping after three pulses.
 
@@ -132,6 +132,12 @@ Known gaps, kept as small follow-ups:
 - `./gradlew :shared:testAndroidHostTest` (logic tests)
 - `./gradlew :androidApp:assembleDebug`, install on the **Resizable_Experimental** emulator,
   check phone + tablet/foldable sizes, light + dark, against prototype screenshots.
+
+### iOS simulator
+
+Built with Xcode 27.2 (`DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`) and run on an iPhone 17 Pro simulator (iOS 26.4).
+The Maestro flows in `.maestro/` pass there: shelf swipe/undo/menu/archive, search, add link, share-to-save,
+reader and reader mode, streak sheet and celebration, settings (theme, accent, layout, language) and the widget preview.
 
 ## Commit rules
 

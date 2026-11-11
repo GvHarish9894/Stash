@@ -64,6 +64,7 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.scale
@@ -79,7 +80,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.techgv.stash.model.Item
+import com.techgv.stash.model.PLAY
 import com.techgv.stash.ui.theme.Stash
 import com.techgv.stash.ui.theme.inter
 import com.techgv.stash.ui.theme.lora
@@ -246,13 +247,18 @@ fun GroupHeader(label: String, modifier: Modifier = Modifier, leading: ImageVect
     }
 }
 
-/** Monogram tile for an item. */
+/** An item's tile letter; the video mark is drawn as a triangle so both platforms match. */
 @Composable
-fun Tile(item: Item, size: Dp, radius: Dp, fontSize: Int, modifier: Modifier = Modifier, alpha: Float = 1f) {
-    Box(
-        modifier.size(size).graphicsLayer { this.alpha = alpha }.clip(RoundedCornerShape(radius)).background(Color(item.tile)),
-        contentAlignment = Alignment.Center,
-    ) { Txt(item.mono, lora(fontSize, 700), Color(item.ink)) }
+fun Mono(mono: String, fontSize: Int, color: Color) {
+    if (mono != PLAY) return Txt(mono, lora(fontSize, 700), color)
+    Canvas(Modifier.size((fontSize * 0.62f).dp)) {
+        drawPath(
+            Path().apply {
+                moveTo(size.width * .12f, 0f); lineTo(size.width, size.height / 2); lineTo(size.width * .12f, size.height); close()
+            },
+            color,
+        )
+    }
 }
 
 /** Candle with a flame; [flicker] wobbles the flame like the design's CSS animation. */

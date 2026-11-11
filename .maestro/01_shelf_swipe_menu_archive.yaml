@@ -1,0 +1,50 @@
+# Run on a fresh launch: maestro test .maestro/01_shelf_swipe_menu_archive.yaml  (iOS: export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer)
+appId: com.techgv.stash.Stash
+---
+- takeScreenshot: 01_home
+- swipe:
+    start: 340, 710
+    end: 30, 710
+    duration: 400
+- tapOn:
+    point: "307,713"
+- assertVisible: "All · 6"
+- assertVisible: ".*Room full-text search.*"
+- swipe:
+    start: 340, 710
+    end: 30, 710
+    duration: 400
+- takeScreenshot: 02_removed
+- assertVisible: "Removed from your shelf"
+- assertVisible: "All · 5"
+- swipe:
+    start: 40, 431
+    end: 370, 431
+    duration: 400
+- extendedWaitUntil:
+    visible: "Keep reading"
+    timeout: 6000
+- takeScreenshot: 03_celebrate
+- tapOn: "Keep reading"
+- assertVisible: "13-day reading streak.*"
+- longPressOn: ".*Shared element.*"
+- assertVisible: "Remove from shelf"
+- takeScreenshot: 04_menu
+- tapOn:
+    text: "Archive"
+    below: "Copy link"
+- assertVisible: "Moved to Archive"
+- assertVisible: "Archive · 4 items"
+- takeScreenshot: 05_archived
+- tapOn:
+    text: "Archive · 4 items"
+- assertVisible: "Search the archive"
+- assertVisible: ".*Shared element.*"
+- takeScreenshot: 06_archive
+- swipe:
+    start: 40, 330
+    end: 370, 330
+    duration: 400
+- assertVisible: "Restored to your shelf"
+- tapOn: "Back to shelf"
+- assertVisible: "Search your shelf"

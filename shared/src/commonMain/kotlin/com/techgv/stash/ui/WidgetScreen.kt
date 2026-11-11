@@ -41,6 +41,7 @@ import com.techgv.stash.ui.components.Candle
 import com.techgv.stash.ui.components.PrimaryButton
 import com.techgv.stash.ui.components.Segmented
 import com.techgv.stash.ui.components.ToastHost
+import com.techgv.stash.ui.components.Mono
 import com.techgv.stash.ui.components.Txt
 import com.techgv.stash.ui.components.contentWidth
 import com.techgv.stash.ui.components.navBarsPad
@@ -101,7 +102,7 @@ fun WidgetScreen(s: StashState, vm: StashViewModel) {
                                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                             ) {
                                 Box(Modifier.size(34.dp).clip(RoundedCornerShape(8.dp)).background(Color(i.tile)), contentAlignment = Alignment.Center) {
-                                    Txt(i.mono, lora(15, 700), Color(i.ink))
+                                    Mono(i.mono, 15, Color(i.ink))
                                 }
                                 Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(1.dp)) {
                                     Txt(i.title, lora(13, 600, 17), c.ink, maxLines = 1)

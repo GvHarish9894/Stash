@@ -14,6 +14,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -42,6 +43,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
@@ -62,6 +64,7 @@ import com.techgv.stash.ui.components.Candle
 import com.techgv.stash.ui.components.OutlineButton
 import com.techgv.stash.ui.components.PrimaryButton
 import com.techgv.stash.ui.components.StashIcons
+import com.techgv.stash.ui.components.Mono
 import com.techgv.stash.ui.components.Txt
 import com.techgv.stash.ui.components.contentWidth
 import com.techgv.stash.ui.components.enter
@@ -100,7 +103,7 @@ fun MenuSheet(s: StashState, vm: StashViewModel) {
             horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Box(Modifier.size(44.dp).clip(RoundedCornerShape(8.dp)).background(Color(m.tile)), contentAlignment = Alignment.Center) {
-                Txt(m.mono, lora(18, 700), Color(0xFFF4ECD8))
+                Mono(m.mono, 18, Color(0xFFF4ECD8))
             }
             Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
                 Txt(m.title, lora(15, 600, 20), c.ink, Modifier.semantics { heading() }, maxLines = 1)
@@ -348,7 +351,7 @@ fun BoxScope.UndoToast(s: StashState, vm: StashViewModel) {
             Modifier.contentWidth().heightIn(min = 56.dp)
                 .graphicsLayer { shadowElevation = 20f; shape = RoundedCornerShape(14.dp); clip = true }
                 .background(c.toast)
-                .clickable(remember { MutableInteractionSource() }, null) {} // taps on the bar never reach the list below
+                .pointerInput(Unit) { detectTapGestures { } } // taps on the bar never reach the list below; adds no semantics
                 .semantics { liveRegion = LiveRegionMode.Polite },
         ) {
             Row(

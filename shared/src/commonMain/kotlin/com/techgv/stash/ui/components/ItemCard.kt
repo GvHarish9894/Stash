@@ -272,7 +272,7 @@ fun ItemCard(
                     (if (lay.row) Modifier.size(lay.tile) else Modifier.fillMaxWidth().height(lay.tileH))
                         .graphicsLayer { alpha = tileAlpha }.clip(lay.tileR).background(Color(item.tile)),
                     contentAlignment = Alignment.Center,
-                ) { Txt(item.mono, lora(lay.mono, 700), Color(item.ink)) }
+                ) { Mono(item.mono, lay.mono, Color(item.ink)) }
                 Column(Modifier.padding(lay.textPad), verticalArrangement = Arrangement.spacedBy(lay.textGap)) {
                     Text(
                         title, color = titleColor, maxLines = lay.clamp, overflow = TextOverflow.Ellipsis,
