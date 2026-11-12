@@ -1,0 +1,48 @@
+# Run on a fresh launch: maestro test .maestro/02_search_add_share_reader_streak.yaml  (iOS: export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer)
+appId: com.techgv.stash.Stash
+---
+- tapOn: "Search your shelf"
+- assertVisible: "RECENT SEARCHES"
+- inputText: "design"
+- assertVisible: "2 results for “design” · 1 archived"
+- assertVisible: "IN YOUR ARCHIVE"
+- takeScreenshot: 07_search
+- tapOn: "Clear search"
+- tapOn: "room"
+- assertVisible: "1 result for “room”"
+- tapOn: "Back to shelf"
+- tapOn: "Add link"
+- assertVisible: "Add a link"
+- tapOn: "https://"
+- inputText: "notalink"
+- tapOn: "Save to shelf"
+- assertVisible: "That doesn’t look like a link.*"
+- takeScreenshot: 08_add_error
+- eraseText: 20
+- inputText: "kotlinlang.org/docs"
+- tapOn: "Save to shelf"
+- assertVisible: ".*kotlinlang.org/docs.*"
+- tapOn: "Share"
+- assertVisible: "Tucked into your shelf"
+- takeScreenshot: 09_save
+- tapOn: "Done"
+- assertVisible: ".*The quiet return of serif type.*"
+- tapOn: ".*Designing for slow reading.*"
+- assertVisible: "Mark unread"
+- extendedWaitUntil:
+    visible: "Marked as read"
+    timeout: 3000
+- takeScreenshot: 10_reader
+- tapOn: "Reader mode.*"
+- assertVisible: "Larger text.*"
+- tapOn: "Larger text.*"
+- takeScreenshot: 11_reader_clean
+- tapOn: "Close and return to Stash"
+- extendedWaitUntil:
+    visible: "Keep reading"
+    timeout: 5000
+- tapOn: "Keep reading"
+- tapOn: "13-day reading streak.*"
+- assertVisible: "Today’s read is done. See you tomorrow."
+- takeScreenshot: 12_streak
+- tapOn: "Close"
