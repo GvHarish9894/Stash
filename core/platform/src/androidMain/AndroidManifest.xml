@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- AndroidConnectivity reads the active network. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application>
+        <!-- Only the app's own alarms reach it (explicit pending intents). -->
+        <receiver
+            android:name="com.techgv.stash.core.platform.ReminderReceiver"
+            android:exported="false" />
+    </application>
+
+</manifest>

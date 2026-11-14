@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="widget_preview_surface">#FF2A2219</color>
+    <color name="widget_preview_bg">#FF1E1812</color>
+    <color name="widget_preview_variant">#FF3D3226</color>
+    <color name="widget_preview_primary">#FFD2A26A</color>
+</resources>

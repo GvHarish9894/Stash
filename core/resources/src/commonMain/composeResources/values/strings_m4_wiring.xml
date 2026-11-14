@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Milestone 4 wiring (T4.4). English only: no es / hi / ta translations supplied yet (D10). -->
+    <!-- A card's Options action for keyboard and switch users: shown while it has focus, and its spoken name. -->
+    <string name="card_options">Options</string>
+    <string name="card_options_for">More options for %1$s</string>
+</resources>

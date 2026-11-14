@@ -1,0 +1,92 @@
+# Manual release. Works out the next version from the commits since the last release tag, builds a signed
+# Android APK and an unsigned iOS .ipa, commits the version, tags it and publishes a GitHub Release.
+#
+# Never run yet: a manually triggered workflow only appears once this file is on the default branch.
+# Needs the secrets listed in ~/.stash-signing/README.txt on the machine that created the keystore.
+# iOS signing needs an Apple developer account; until then the .ipa cannot be installed as it is.
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version bump (auto reads the commits since the last release)
+        type: choice
+        options: [auto, patch, minor, major]
+        default: auto
+
+permissions:
+  contents: write
+
+concurrency: release
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the version comes from the history since the last tag
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Next version
+        id: version
+        env:
+          BUMP: ${{ inputs.bump }}
+        run: scripts/next-version.sh "$BUMP" | tee -a "$GITHUB_OUTPUT"
+
+      - name: Release keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.STASH_RELEASE_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            echo "::error::The secret STASH_RELEASE_KEYSTORE_BASE64 is not set."
+            exit 1
+          fi
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/stash-release.jks"
+
+      - name: Android release APK (signed)
+        env:
+          STASH_RELEASE_KEYSTORE_FILE: ${{ runner.temp }}/stash-release.jks
+          STASH_RELEASE_KEYSTORE_PASSWORD: ${{ secrets.STASH_RELEASE_KEYSTORE_PASSWORD }}
+          STASH_RELEASE_KEY_ALIAS: ${{ secrets.STASH_RELEASE_KEY_ALIAS }}
+          STASH_RELEASE_KEY_PASSWORD: ${{ secrets.STASH_RELEASE_KEY_PASSWORD }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          ./gradlew :androidApp:assembleRelease
+          cp androidApp/build/outputs/apk/release/androidApp-release.apk "Stash-$VERSION.apk"
+
+      - name: iOS .ipa (unsigned)
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Release \
+            -sdk iphoneos -destination 'generic/platform=iOS' \
+            -archivePath build/release/Stash.xcarchive -derivedDataPath build/ios-release \
+            CODE_SIGNING_ALLOWED=NO -quiet archive
+          mkdir Payload
+          cp -R build/release/Stash.xcarchive/Products/Applications/Stash.app Payload/
+          zip -qry "Stash-$VERSION-unsigned.ipa" Payload
+
+      - name: Commit the version and tag it
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git diff --quiet -- iosApp/Configuration/Config.xcconfig || git commit -m "Release $TAG" -- iosApp/Configuration/Config.xcconfig
+          git tag "$TAG"
+          git push origin HEAD:main "$TAG"
+
+      - name: GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: gh release create "$TAG" --title "Stash $VERSION" --generate-notes "Stash-$VERSION.apk" "Stash-$VERSION-unsigned.ipa"

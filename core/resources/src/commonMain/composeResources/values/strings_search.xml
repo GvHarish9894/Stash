@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings added by the search and archive features (lane T3.1c). English only for now (decision D10). -->
+<resources>
+    <!-- A command could not be stored; nothing changed. -->
+    <string name="search_change_failed">Couldn’t save that change. Try again.</string>
+    <!-- Announced when the item options sheet opens (handoff Semantics table). -->
+    <string name="search_item_options">Item options</string>
+    <!-- The browser could not show the link. -->
+    <string name="search_open_link_failed">Couldn’t open this link</string>
+
+    <!-- Archive rule line in right-to-left layouts, where the end edge is on the left: the swipe toward the end restores. -->
+    <string name="archive_rule_off_rtl">Auto-archive is off. Swipe left to restore an item, right to delete it.</string>
+    <plurals name="archive_rule_days_rtl">
+        <item quantity="one">Read items move here after %1$d day. Swipe left to restore, right to delete.</item>
+        <item quantity="other">Read items move here after %1$d days. Swipe left to restore, right to delete.</item>
+    </plurals>
+</resources>

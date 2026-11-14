@@ -1,121 +1,81 @@
 package com.techgv.stash
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ContentTransform
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.CubicBezierEasing
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.scaleIn
-import androidx.compose.animation.scaleOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.animation.slideOutVertically
-import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.backhandler.BackHandler
-import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.techgv.stash.model.Screen
-import com.techgv.stash.ui.ArchiveScreen
-import com.techgv.stash.ui.Celebration
-import com.techgv.stash.ui.HomeScreen
-import com.techgv.stash.ui.MenuSheet
-import com.techgv.stash.ui.NotificationBanner
-import com.techgv.stash.ui.ReaderScreen
-import com.techgv.stash.ui.SaveScreen
-import com.techgv.stash.ui.SearchScreen
-import com.techgv.stash.ui.SettingsScreen
-import com.techgv.stash.ui.StreakSheet
-import com.techgv.stash.ui.UndoToast
-import com.techgv.stash.ui.WidgetScreen
-import com.techgv.stash.ui.components.ToastHost
-import com.techgv.stash.ui.theme.LocalStrings
-import com.techgv.stash.ui.theme.Stash
-import com.techgv.stash.ui.theme.StashTheme
-import com.techgv.stash.ui.theme.stringsFor
+import androidx.compose.ui.graphics.Color
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil3.ImageLoader
+import coil3.PlatformContext
+import coil3.Uri
+import coil3.compose.setSingletonImageLoaderFactory
+import coil3.disk.DiskCache
+import coil3.fetch.Fetcher
+import coil3.memory.MemoryCache
+import coil3.network.ktor3.KtorNetworkFetcherFactory
+import coil3.serviceLoaderEnabled
+import com.techgv.stash.core.designsystem.theme.StashTheme
+import com.techgv.stash.core.domain.SettingsRepository
+import com.techgv.stash.core.model.UserPreferences
+import com.techgv.stash.core.network.platformHttpEngineFactory
+import com.techgv.stash.core.platform.A11yPrefs
+import com.techgv.stash.navigation.StashNavHost
+import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.plugins.HttpTimeout
+import okio.FileSystem
+import org.koin.compose.koinInject
 
-/** Lets the platform match status/navigation bar icons to the app's own light or dark theme. */
+/**
+ * Lets the platform match status/navigation bar icons to the app's own light or dark theme, and the window behind the
+ * content to the theme's [background] (Android shows it while a screen or a web view has not drawn yet).
+ */
 @Composable
-expect fun SystemBars(darkIcons: Boolean)
+expect fun SystemBars(darkIcons: Boolean, background: Color)
 
-private fun depth(s: Screen) = when (s) {
-    Screen.Home -> 0
-    Screen.Search, Screen.Settings, Screen.Archive -> 1
-    Screen.Widget, Screen.Save -> 2
-    Screen.Reader -> 3
-}
-
-private val Out = CubicBezierEasing(.2f, .8f, .2f, 1f)
-
-/** Page transitions from the design: side panels slide, search drops in, the reader rises. */
-private fun transition(from: Screen, to: Screen, calm: Boolean): ContentTransform {
-    if (calm) return EnterTransition.None togetherWith ExitTransition.None
-    val forward = depth(to) >= depth(from)
-    val panel = setOf(Screen.Settings, Screen.Archive, Screen.Widget)
-    val t = when {
-        to == Screen.Reader -> (slideInVertically(tween(360, easing = Out)) { it * 9 / 100 } + fadeIn(tween(360))) togetherWith
-            scaleOut(tween(360), targetScale = .93f) + fadeOut(tween(360), targetAlpha = .6f)
-        from == Screen.Reader -> (scaleIn(tween(360), initialScale = .93f) + fadeIn(tween(240))) togetherWith
-            (slideOutVertically(tween(240)) { it * 7 / 100 } + fadeOut(tween(240)))
-        to == Screen.Save || from == Screen.Save -> fadeIn(tween(250)) togetherWith fadeOut(tween(240))
-        to == Screen.Search -> (slideInVertically(tween(240, easing = Out)) { -it / 60 } + fadeIn(tween(240))) togetherWith
-            (scaleOut(tween(340), targetScale = .97f) + fadeOut(tween(340), targetAlpha = .8f))
-        from == Screen.Search -> fadeIn(tween(220)) togetherWith (slideOutVertically(tween(220)) { -it / 100 } + fadeOut(tween(220)))
-        forward && to in panel -> slideInHorizontally(tween(340, easing = Out)) { it } togetherWith
-            slideOutHorizontally(tween(340, easing = Out)) { -it * 22 / 100 }
-        from in panel -> slideInHorizontally(tween(240)) { -it * 22 / 100 } togetherWith slideOutHorizontally(tween(240)) { it }
-        else -> fadeIn(tween(240)) togetherWith fadeOut(tween(240))
-    }
-    t.targetContentZIndex = if (forward) 1f else -1f
-    return t
-}
-
-@OptIn(ExperimentalComposeUiApi::class)
+/** The app's root: the user's theme around the navigation host. */
 @Composable
 fun App() {
-    val vm: StashViewModel = viewModel { StashViewModel() }
-    val s = vm.state
-    val p = s.prefs
-    StashTheme(p.theme, p.accent, p.textSize, p.calm) {
-        CompositionLocalProvider(LocalStrings provides stringsFor(p.lang)) {
-            val c = Stash.colors
-            val calm = Stash.calm
-            SystemBars(darkIcons = !c.dark && s.screen != Screen.Reader)
-            val homeList = rememberLazyListState()
-            val overlay = s.celebrate || s.clearConfirm || s.archPending != null || s.menuId != null ||
-                s.addOpen || s.streakOpen || s.notif != null
-            BackHandler(enabled = overlay || s.screen != Screen.Home) { vm.back() }
+    setSingletonImageLoaderFactory(::stashImageLoader)
+    StashUserTheme { StashNavHost() }
+}
 
-            Box(Modifier.fillMaxSize().background(c.bg)) {
-                AnimatedContent(s.screen, transitionSpec = { transition(initialState, targetState, calm) }, label = "screen") { screen ->
-                    when (screen) {
-                        Screen.Home -> HomeScreen(s, vm, homeList)
-                        Screen.Search -> SearchScreen(s, vm)
-                        Screen.Archive -> ArchiveScreen(s, vm)
-                        Screen.Settings -> SettingsScreen(s, vm)
-                        Screen.Widget -> WidgetScreen(s, vm)
-                        Screen.Reader -> ReaderScreen(s, vm)
-                        Screen.Save -> SaveScreen(s, vm)
-                    }
-                }
-                ToastHost(s.homeToast, if (s.screen == Screen.Home) 96.dp else 28.dp)
-                UndoToast(s, vm)
-                MenuSheet(s, vm)
-                StreakSheet(s, vm)
-                NotificationBanner(s, vm)
-                Celebration(s, vm)
-            }
-        }
+/**
+ * [StashTheme] from the stored preferences and the OS reduce-motion flag. Draws nothing until the preferences arrive, so
+ * the default theme never flashes before the user's own. The share target uses it too.
+ */
+@Composable
+internal fun StashUserTheme(content: @Composable () -> Unit) {
+    val preferences by koinInject<SettingsRepository>().preferences.collectAsStateWithLifecycle<UserPreferences?>(null)
+    val systemReduceMotion by koinInject<A11yPrefs>().reduceMotion.collectAsStateWithLifecycle()
+    val prefs = preferences ?: return
+    StashTheme(prefs.theme, prefs.accent, prefs.textSize, prefs.reduceMotion, systemReduceMotion, content)
+}
+
+private const val IMAGE_MEMORY_FRACTION = 0.15
+private const val IMAGE_DISK_BYTES = 64L * 1024 * 1024
+
+/**
+ * Coil's HTTP client: a stalled image server gives up after these waits instead of holding a connection (the card keeps
+ * its monogram tile).
+ */
+internal fun HttpClientConfig<*>.imageClientDefaults() {
+    install(HttpTimeout) {
+        connectTimeoutMillis = 10_000
+        socketTimeoutMillis = 10_000
+        requestTimeoutMillis = 20_000
     }
+}
+
+/** Thumbnails and reader images: https only, through Ktor on the platform engine, with bounded waits and caches. */
+private fun stashImageLoader(context: PlatformContext): ImageLoader {
+    val network = KtorNetworkFetcherFactory(httpClient = { HttpClient(platformHttpEngineFactory()) { imageClientDefaults() } })
+    return ImageLoader.Builder(context)
+        // Only the fetcher added below: no auto-registered one that would also load http.
+        .serviceLoaderEnabled(false)
+        .components {
+            add(Fetcher.Factory<Uri> { data, options, loader -> if (data.scheme == "https") network.create(data, options, loader) else null })
+        }
+        .memoryCache { MemoryCache.Builder().maxSizePercent(context, IMAGE_MEMORY_FRACTION).build() }
+        .diskCache { DiskCache.Builder().directory(FileSystem.SYSTEM_TEMPORARY_DIRECTORY / "stash_images").maxSizeBytes(IMAGE_DISK_BYTES).build() }
+        .build()
 }

@@ -1,0 +1,23 @@
+{
+  "items": [
+    {
+      "contentType": "Article",
+      "id": "019a7b2c-5e10-7d3a-9c41-2f6e8b1d0a01",
+      "imageUrl": "https://example-blog.com/serif.png",
+      "readingMinutes": 5,
+      "siteName": "example-blog.com",
+      "title": "The quiet return of serif type on screens"
+    },
+    {
+      "contentType": "Video",
+      "id": "019a7b2c-5e10-7d3a-9c41-2f6e8b1d0a02",
+      "imageUrl": null,
+      "readingMinutes": null,
+      "siteName": "youtube.com",
+      "title": "Bookbinding by hand — “Coptic” stitch, ✂️ and all"
+    }
+  ],
+  "readToday": true,
+  "streak": 12,
+  "unreadCount": 7
+}

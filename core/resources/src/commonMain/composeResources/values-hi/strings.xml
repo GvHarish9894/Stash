@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only the strings the design localises; the rest falls back to English (decision D10). -->
+<resources>
+    <string name="nav_archive">संग्रह</string>
+    <string name="nav_settings">सेटिंग्स</string>
+    <string name="nav_share_demo">शेयर</string>
+    <string name="shelf_unread_count">%1$d अपठित</string>
+    <string name="shelf_search_hint">अपनी शेल्फ़ में खोजें</string>
+    <string name="shelf_add_link">लिंक जोड़ें</string>
+    <string name="chip_all">सभी</string>
+    <string name="chip_unread">अपठित</string>
+    <string name="group_today">आज</string>
+    <string name="group_yesterday">कल</string>
+    <string name="group_this_week">इस हफ़्ते</string>
+    <string name="group_last_week">पिछले हफ़्ते</string>
+    <string name="group_earlier">पहले</string>
+    <string name="weekday_sunday">रविवार</string>
+    <string name="weekday_monday">सोमवार</string>
+    <string name="weekday_tuesday">मंगलवार</string>
+    <string name="weekday_wednesday">बुधवार</string>
+    <string name="weekday_thursday">गुरुवार</string>
+    <string name="weekday_friday">शुक्रवार</string>
+    <string name="weekday_saturday">शनिवार</string>
+    <string name="month_january">जनवरी</string>
+    <string name="month_february">फ़रवरी</string>
+    <string name="month_march">मार्च</string>
+    <string name="month_april">अप्रैल</string>
+    <string name="month_may">मई</string>
+    <string name="month_june">जून</string>
+    <string name="month_july">जुलाई</string>
+    <string name="month_august">अगस्त</string>
+    <string name="month_september">सितंबर</string>
+    <string name="month_october">अक्तूबर</string>
+    <string name="month_november">नवंबर</string>
+    <string name="month_december">दिसंबर</string>
+    <string name="widget_unread_count">· %1$d अपठित</string>
+    <string name="widget_unread_label">अपठित</string>
+</resources>

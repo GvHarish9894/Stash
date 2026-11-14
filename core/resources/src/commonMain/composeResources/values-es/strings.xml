@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only the strings the design localises; the rest falls back to English (decision D10). -->
+<resources>
+    <string name="nav_archive">Archivo</string>
+    <string name="nav_settings">Ajustes</string>
+    <string name="nav_share_demo">Compartir</string>
+    <string name="shelf_unread_count">%1$d sin leer</string>
+    <string name="shelf_search_hint">Busca en tu estante</string>
+    <string name="shelf_add_link">Añadir enlace</string>
+    <string name="chip_all">Todo</string>
+    <string name="chip_unread">Sin leer</string>
+    <string name="group_today">Hoy</string>
+    <string name="group_yesterday">Ayer</string>
+    <string name="group_this_week">Esta semana</string>
+    <string name="group_last_week">La semana pasada</string>
+    <string name="group_earlier">Antes</string>
+    <string name="weekday_sunday">Domingo</string>
+    <string name="weekday_monday">Lunes</string>
+    <string name="weekday_tuesday">Martes</string>
+    <string name="weekday_wednesday">Miércoles</string>
+    <string name="weekday_thursday">Jueves</string>
+    <string name="weekday_friday">Viernes</string>
+    <string name="weekday_saturday">Sábado</string>
+    <string name="month_january">Enero</string>
+    <string name="month_february">Febrero</string>
+    <string name="month_march">Marzo</string>
+    <string name="month_april">Abril</string>
+    <string name="month_may">Mayo</string>
+    <string name="month_june">Junio</string>
+    <string name="month_july">Julio</string>
+    <string name="month_august">Agosto</string>
+    <string name="month_september">Septiembre</string>
+    <string name="month_october">Octubre</string>
+    <string name="month_november">Noviembre</string>
+    <string name="month_december">Diciembre</string>
+    <string name="widget_unread_count">· %1$d sin leer</string>
+    <string name="widget_unread_label">sin leer</string>
+</resources>

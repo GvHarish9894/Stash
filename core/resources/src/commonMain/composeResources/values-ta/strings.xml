@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only the strings the design localises; the rest falls back to English (decision D10). -->
+<resources>
+    <string name="nav_archive">காப்பகம்</string>
+    <string name="nav_settings">அமைப்புகள்</string>
+    <string name="nav_share_demo">பகிர்</string>
+    <string name="shelf_unread_count">%1$d படிக்காதவை</string>
+    <string name="shelf_search_hint">அலமாரியில் தேடுங்கள்</string>
+    <string name="shelf_add_link">இணைப்பு சேர்</string>
+    <string name="chip_all">அனைத்தும்</string>
+    <string name="chip_unread">படிக்காதவை</string>
+    <string name="group_today">இன்று</string>
+    <string name="group_yesterday">நேற்று</string>
+    <string name="group_this_week">இந்த வாரம்</string>
+    <string name="group_last_week">கடந்த வாரம்</string>
+    <string name="group_earlier">முன்பு</string>
+    <string name="weekday_sunday">ஞாயிறு</string>
+    <string name="weekday_monday">திங்கள்</string>
+    <string name="weekday_tuesday">செவ்வாய்</string>
+    <string name="weekday_wednesday">புதன்</string>
+    <string name="weekday_thursday">வியாழன்</string>
+    <string name="weekday_friday">வெள்ளி</string>
+    <string name="weekday_saturday">சனி</string>
+    <string name="month_january">ஜனவரி</string>
+    <string name="month_february">பிப்ரவரி</string>
+    <string name="month_march">மார்ச்</string>
+    <string name="month_april">ஏப்ரல்</string>
+    <string name="month_may">மே</string>
+    <string name="month_june">ஜூன்</string>
+    <string name="month_july">ஜூலை</string>
+    <string name="month_august">ஆகஸ்ட்</string>
+    <string name="month_september">செப்டம்பர்</string>
+    <string name="month_october">அக்டோபர்</string>
+    <string name="month_november">நவம்பர்</string>
+    <string name="month_december">டிசம்பர்</string>
+    <string name="widget_unread_count">· %1$d படிக்காதவை</string>
+    <string name="widget_unread_label">படிக்காதவை</string>
+</resources>

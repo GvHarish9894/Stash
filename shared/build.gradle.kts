@@ -1,10 +1,7 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidMultiplatformLibrary)
-    alias(libs.plugins.composeMultiplatform)
-    alias(libs.plugins.composeCompiler)
+    id("stash.kmp.library")
+    id("stash.kmp.compose")
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -18,18 +15,6 @@ kotlin {
         }
     }
     android {
-       namespace = "com.techgv.stash.shared"
-       compileSdk = libs.versions.android.compileSdk.get().toInt()
-       minSdk = libs.versions.android.minSdk.get().toInt()
-       compilerOptions {
-           jvmTarget = JvmTarget.JVM_11
-       }
-       androidResources {
-           enable = true
-       }
-       withHostTest {
-           isIncludeAndroidResources = true
-       }
        withDeviceTestBuilder {
            sourceSetTreeName = "test"
        }.configure {
@@ -38,12 +23,23 @@ kotlin {
     }
     sourceSets {
         androidMain.dependencies {
+            implementation(project(":core:platform"))
+            implementation(libs.koin.android)
+            implementation(libs.androidx.work.runtime)
+            implementation(libs.androidx.lifecycle.process)
+            implementation(libs.glance.appwidget)
             implementation(libs.androidx.core.ktx)
+            implementation(libs.androidx.appcompat)
             implementation(libs.compose.uiToolingPreview)
-            implementation(libs.compose.uiTooling)
         }
         commonMain.dependencies {
-            implementation(libs.compose.runtime)
+            implementation(project(":core:data"))
+            implementation(project(":core:resources"))
+            implementation(project(":core:designsystem"))
+            implementation(project(":core:platform"))
+            implementation(project(":core:network"))
+            listOf("shelf", "search", "archive", "reader", "settings", "streak", "quicksave", "widgetpreview")
+                .forEach { implementation(project(":feature:$it")) }
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
             implementation(libs.compose.ui)
@@ -52,16 +48,40 @@ kotlin {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.navigation.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.ktor3)
+        }
+        iosMain.dependencies {
+            implementation(project(":core:platform"))
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(project(":core:testing"))
+            implementation(project(":core:database"))
+            implementation(project(":core:preferences"))
+            implementation(libs.compose.ui.test)
+            // The in-app metadata fetch test and the journey tests answer the fetchers from a mock engine.
+            implementation(project(":core:network"))
+            implementation(libs.ktor.client.mock)
         }
+        // The journey tests need a window: they run on the iOS simulator (part of `check`) and as Android device tests.
+        iosTest { kotlin.srcDir("src/composeUiTest/kotlin") }
+        getByName("androidDeviceTest").kotlin.srcDir("src/composeUiTest/kotlin")
         getByName("androidDeviceTest").dependencies {
             implementation(libs.androidx.testRunner)
+            implementation(libs.androidx.work.testing)
+            implementation(libs.glance.appwidget.testing)
+            // The ComponentActivity runComposeUiTest launches; aligned by compose-ui-test's constraints.
+            implementation("androidx.compose.ui:ui-test-manifest")
         }
     }
 }
 
-dependencies {
-    androidRuntimeClasspath(libs.compose.uiTooling)
+// The JSON fixtures the Swift tests also use (widget.json, inbox-entry.json); simctl hands SIMCTL_CHILD_* variables to
+// the test process.
+val swiftFixtures = rootProject.file("iosApp/StashTests/Fixtures")
+tasks.withType<org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest>().configureEach {
+    inputs.dir(swiftFixtures)
+    environment("SIMCTL_CHILD_STASH_FIXTURES", swiftFixtures.absolutePath)
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Home (feature:shelf). English only for now; other languages fall back to English (decision D10). -->
+    <string name="shelf_menu_title">Item options</string>
+    <string name="shelf_toast_already_on_shelf">Already on your shelf — moved to the top</string>
+    <string name="shelf_toast_browser_failed">Couldn’t open the link</string>
+    <string name="shelf_toast_save_failed">Couldn’t save the link. Try again.</string>
+    <string name="shelf_toast_action_failed">That didn’t work. Nothing changed.</string>
+
+    <!-- Quick-save sheet (feature:quicksave), shown after sharing into Stash on Android. -->
+    <string name="quicksave_already">Already on your shelf — moved to the top.</string>
+    <string name="quicksave_nothing_title">Nothing to save here</string>
+    <string name="quicksave_nothing_body">There was no link in what you shared.</string>
+    <string name="quicksave_failed_title">Couldn’t save this link</string>
+    <string name="quicksave_failed_body">Stash couldn’t store it on this device. Free up some storage, then share the link again.</string>
+</resources>

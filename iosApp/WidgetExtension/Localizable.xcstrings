@@ -1,0 +1,13 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld min read": {},
+    "%lld-day reading streak": {},
+    "· %lld unread": {},
+    "All caught up. Nothing waiting on your shelf.": {},
+    "Stash": {},
+    "Your next unread links and your reading streak.": {},
+    "unread": {}
+  },
+  "version": "1.0"
+}
