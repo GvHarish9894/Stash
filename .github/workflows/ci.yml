@@ -2,6 +2,9 @@
 #   check                JVM and Android-host tests, the module rules, the coverage gate, and both app builds.
 #   ios-simulator-tests  Everything that runs on the iOS simulator: the Compose UI tests and the shared logic tests
 #                        compiled for iOS. Slower, and sensitive to a slow runner, so it reports separately.
+# On a pull request the result is also shown as a label: "checks passed" or "checks failed". The label is removed
+# when a new run starts, so it always describes the latest commit. (Pull requests from forks get no label: their
+# token cannot write.)
 name: CI
 
 on:
@@ -53,3 +56,39 @@ jobs:
         with:
           name: test-reports-ios-simulator
           path: '**/build/reports/tests/**'
+
+  clear-label:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Remove the result label of the previous run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh label create "checks passed" --color 0e8a16 --description "Every CI check passed on the latest commit" --force
+          gh label create "checks failed" --color d73a4a --description "A CI check failed on the latest commit" --force
+          gh pr edit "$PR" --remove-label "checks passed" --remove-label "checks failed"
+
+  label:
+    needs: [check, ios-simulator-tests, clear-label]
+    # Not when the run was cancelled (a newer push replaced it): that run sets the label.
+    if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Label the pull request with the result
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          PASSED: ${{ needs.check.result == 'success' && needs.ios-simulator-tests.result == 'success' }}
+        run: |
+          if [ "$PASSED" = "true" ]; then label="checks passed"; else label="checks failed"; fi
+          gh pr edit "$PR" --add-label "$label"
