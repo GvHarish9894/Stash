@@ -50,6 +50,7 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -58,7 +59,10 @@ import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.techgv.stash.core.designsystem.HapticKind
+import com.techgv.stash.core.designsystem.perform
 import com.techgv.stash.core.designsystem.presentation.weekdayInitial
+import com.techgv.stash.core.designsystem.rememberSoundPlayer
 import com.techgv.stash.core.designsystem.theme.Stash
 import com.techgv.stash.core.designsystem.theme.StashMotion
 import com.techgv.stash.core.domain.DayMark
@@ -85,7 +89,7 @@ private val Wick = Color(0xFF3B2F23)
 private val Ember = Color(0xFFD97A6F)
 
 /**
- * First read of the day: the candle lights, the count rolls from [from] to [to], sparks rise and today's dot pops.
+ * First read of the day: the candle lights (with a haptic and a chime), the count rolls from [from] to [to], sparks rise and today's dot pops.
  * Announced as "Streak extended to 13 days. [message]". Like a sheet, "Keep reading" takes keyboard focus on open, focus
  * stays in the dialog while it is shown and Esc closes it; mark the content underneath with `Modifier.coveredByModal`.
  */
@@ -100,6 +104,14 @@ fun CelebrationDialog(visible: Boolean, from: Int, to: Int, message: String, wee
         val text = remember { anim() }
         val pop = remember { anim() }
         val embers = remember { List(10) { anim() } }
+        val haptics = LocalHapticFeedback.current
+        val playSound = rememberSoundPlayer()
+        LaunchedEffect(Unit) {
+            // The candle lights with a confirm haptic and a soft chime; under Reduce motion there is no wait.
+            if (!reduceMotion) delay(StashMotion.CELEBRATION_IGNITE_DELAY.toLong())
+            haptics.perform(HapticKind.Confirm)
+            playSound(Res.readBytes("files/streak_chime.wav"))
+        }
         LaunchedEffect(Unit) {
             if (reduceMotion) return@LaunchedEffect
             launch { delay(StashMotion.CELEBRATION_IGNITE_DELAY.toLong()); ignite.animateTo(1f, StashMotion.enter(StashMotion.CELEBRATION_IGNITE)) }

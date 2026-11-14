@@ -93,7 +93,15 @@ A ViewModel that needs an argument (the reader's item id) takes it as a construc
   calls it from the callback.
 - **UI feedback:** haptics and announcements stay in the Screen, through `LocalHapticFeedback` and semantics
   (`liveRegion`, `error()`, `paneTitle`). A confirm / reject haptic that depends on a command result arrives as an
-  effect, and the Route or Screen performs it.
+  effect, and the Route or Screen performs it. Haptic kinds are in `core:designsystem`'s `Feedback.kt` (`HapticKind`):
+  - Controls play their own: `StashSwitch` and `SettingsSwitchRow` play `ToggleOn` / `ToggleOff`; `SegmentedControl`,
+    `OptionCard` and `AccentSwatch` play `Select` only when the choice changes. Wrap any other picker's callback in
+    `haptics.select(option, selected, onSelect)` or a switch's in `haptics.toggle(on, onChange)`.
+  - On iOS, Compose plays `ToggleOn` / `ToggleOff` as a light impact and `Select` as the system selection tick. On
+    Android, the toggle haptics need Android 14; older versions play none.
+  - The streak celebration plays `Confirm` and a short chime (`core:resources` `files/streak_chime.wav`) when the
+    candle lights. `rememberSoundPlayer()` plays UI sounds: silent on silent / vibrate (Android) or the silent switch
+    (iOS), and mixed with other audio.
 
 ```kotlin
 @Composable

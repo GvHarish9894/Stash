@@ -19,6 +19,15 @@ Use the run configurations provided by the run widget in your IDE's toolbar. You
 - Android app: `./gradlew :androidApp:assembleDebug`
 - iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
 
+### Haptics and sound
+
+- Settings: every switch plays a toggle haptic, and every picker (segmented control, option card, accent, swipe
+  action) plays a selection tick when the value changes.
+- Streak celebration: a confirm haptic and a soft chime when the candle lights. The chime stays silent when the
+  phone is on silent or vibrate.
+
+The same code runs on Android and iOS; see [feature/README.md](./feature/README.md) (UI feedback) for the details.
+
 ### Running tests
 
 Use the run button in your IDE's editor gutter, or run tests using Gradle tasks:

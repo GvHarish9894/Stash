@@ -434,7 +434,7 @@
     <string name="settings_language">App language</string>
     <string name="settings_language_body">Follows your phone unless you pick one</string>
     <string name="settings_source_code">Source code on GitHub</string>
-    <string name="settings_source_code_url">github.com/GvHarish9894</string>
+    <string name="settings_source_code_url">github.com/GvHarish9894/Stash</string>
     <string name="settings_privacy">Privacy</string>
     <string name="settings_privacy_body">Everything stays on this device. No account, no tracking.</string>
     <string name="settings_version">Version</string>

@@ -568,7 +568,7 @@ class SettingsViewModelTest {
         assertEquals(
             listOf(
                 SettingsEffect.Back, SettingsEffect.OpenArchive, SettingsEffect.OpenWidgetPreview,
-                SettingsEffect.OpenExternally("https://github.com/GvHarish9894"),
+                SettingsEffect.OpenExternally("https://github.com/GvHarish9894/Stash"),
             ),
             env.effects,
         )

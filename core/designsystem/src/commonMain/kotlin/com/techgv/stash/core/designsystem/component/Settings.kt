@@ -24,6 +24,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.foundation.focusable
 import androidx.compose.ui.focus.focusRequester
@@ -44,6 +45,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.techgv.stash.core.designsystem.HapticKind
+import com.techgv.stash.core.designsystem.perform
+import com.techgv.stash.core.designsystem.toggle
 import com.techgv.stash.core.designsystem.theme.Stash
 import com.techgv.stash.core.designsystem.theme.accentColor
 import com.techgv.stash.core.designsystem.theme.stashColors
@@ -125,10 +129,11 @@ fun SettingsSwitchRow(
     enabled: Boolean = true,
     badge: (@Composable () -> Unit)? = null,
 ) {
+    val haptics = LocalHapticFeedback.current
     Row(
         // The group clips its rows, so their focus rings are drawn inside.
         modifier.fillMaxWidth().focusRing(inset = true)
-            .toggleable(checked, enabled = enabled, role = Role.Switch, onValueChange = onCheckedChange)
+            .toggleable(checked, enabled = enabled, role = Role.Switch) { haptics.toggle(it, onCheckedChange) }
             .then(RowPadding).dimmedWhenDisabled(enabled),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(Stash.spacing.sm),
@@ -241,10 +246,11 @@ fun OptionCard(
     preview: @Composable () -> Unit,
 ) {
     val c = Stash.colors
+    val haptics = LocalHapticFeedback.current
     val shape = RoundedCornerShape(Stash.radius.card)
     Column(
         modifier.dimmedWhenDisabled(enabled).focusRing(shape).clip(shape).border(2.dp, if (selected) c.primary else c.outline, shape)
-            .selectable(selected, enabled = enabled, role = Role.RadioButton, onClick = onClick)
+            .selectable(selected, enabled = enabled, role = Role.RadioButton) { if (!selected) haptics.perform(HapticKind.Select); onClick() }
             .padding(start = 6.dp, end = 6.dp, top = 6.dp, bottom = Stash.spacing.xs),
         verticalArrangement = Arrangement.spacedBy(Stash.spacing.xs),
     ) {
@@ -315,9 +321,10 @@ fun CardLayoutPreview(layout: CardLayout) {
 @Composable
 fun AccentSwatch(accent: Accent, label: String, selected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
     val c = Stash.colors
+    val haptics = LocalHapticFeedback.current
     Box(
         modifier.minimumInteractiveComponentSize().size(36.dp).focusRing(CircleShape).clip(CircleShape).border(2.dp, if (selected) c.ink else Color.Transparent, CircleShape)
-            .selectable(selected, role = Role.RadioButton, onClick = onClick)
+            .selectable(selected, role = Role.RadioButton) { if (!selected) haptics.perform(HapticKind.Select); onClick() }
             .semantics { contentDescription = label }.padding(3.dp),
     ) { Box(Modifier.fillMaxSize().clip(CircleShape).background(accentColor(accent, c.dark))) }
 }

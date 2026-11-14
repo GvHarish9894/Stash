@@ -4,6 +4,7 @@ import androidx.compose.ui.unit.Dp
 import com.techgv.stash.core.resources.text_size_large_a11y
 import com.techgv.stash.core.resources.text_size_medium_a11y
 import com.techgv.stash.core.resources.text_size_small_a11y
+import com.techgv.stash.core.designsystem.select
 import com.techgv.stash.core.designsystem.component.rememberRadioGroupFocus
 import com.techgv.stash.core.designsystem.component.radioGroupOption
 import com.techgv.stash.core.designsystem.component.RowOrStack
@@ -49,6 +50,7 @@ import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.LiveRegionMode
@@ -609,13 +611,14 @@ private val StartSwipeOptions = listOf(SwipeAction.Remove, SwipeAction.Archive, 
 @Composable
 private fun SwipeOptions(options: List<SwipeAction>, selected: SwipeAction, onPick: (SwipeAction) -> Unit) {
     val c = Stash.colors
+    val haptics = LocalHapticFeedback.current
     val group = rememberRadioGroupFocus()
     FlowRow(Modifier.selectableGroup(), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         options.forEach { a ->
             val on = a == selected
             val icon = swipeActionIcon(a)
             FilterChip(
-                stringResource(a.label), on, { onPick(a) },
+                stringResource(a.label), on, { haptics.select(a, selected, onPick) },
                 Modifier.radioGroupOption(group, options.indexOf(a), options.indexOf(selected), options.size) { onPick(options[it]) },
                 leading = icon?.let { { Icon(it, null, Modifier.size(18.dp), tint = if (on) c.onPrimary else c.ink) } },
                 role = Role.RadioButton,
