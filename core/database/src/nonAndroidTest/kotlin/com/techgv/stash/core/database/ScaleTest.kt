@@ -269,7 +269,9 @@ class ScaleTest {
 
     private fun cardIds(rows: List<ShelfRow>) = rows.filterIsInstance<ShelfRow.Card>().map { it.item.id.value }
 
-    private suspend fun <T> timed(name: String, bound: Duration = 10.seconds, block: suspend () -> T): T {
+    // The query plans above are what pins the behaviour; this bound only catches a gross regression. It is wide because
+    // the iOS simulator on a shared CI runner took 10.4 s for a step that takes about 1 s on a desktop JVM.
+    private suspend fun <T> timed(name: String, bound: Duration = 60.seconds, block: suspend () -> T): T {
         val (value, took) = measureTimedValue { block() }
         report.appendLine("  ${took.inWholeMilliseconds} ms  $name")
         assertTrue(took < bound, "$name took $took")
