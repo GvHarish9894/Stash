@@ -25,6 +25,13 @@ enum class HapticKind {
 
     /** An action was refused, for example an invalid link. */
     Reject,
+
+    /** A switch turned on / off. */
+    ToggleOn,
+    ToggleOff,
+
+    /** Another option of a picker was chosen (segmented control, option card, swatch). */
+    Select,
 }
 
 fun HapticFeedback.perform(kind: HapticKind) = performHapticFeedback(
@@ -33,8 +40,24 @@ fun HapticFeedback.perform(kind: HapticKind) = performHapticFeedback(
         HapticKind.SwipeThreshold -> HapticFeedbackType.GestureThresholdActivate
         HapticKind.Confirm -> HapticFeedbackType.Confirm
         HapticKind.Reject -> HapticFeedbackType.Reject
+        // Android 14+ (older Android plays none); iOS: light impact and the system selection tick.
+        HapticKind.ToggleOn -> HapticFeedbackType.ToggleOn
+        HapticKind.ToggleOff -> HapticFeedbackType.ToggleOff
+        HapticKind.Select -> HapticFeedbackType.SegmentTick
     },
 )
+
+/** Plays the switch haptic for [on], then passes it on. */
+fun HapticFeedback.toggle(on: Boolean, onChange: (Boolean) -> Unit) {
+    perform(if (on) HapticKind.ToggleOn else HapticKind.ToggleOff)
+    onChange(on)
+}
+
+/** Selects [option], with the selection tick only when it is not [selected] already. */
+fun <T> HapticFeedback.select(option: T, selected: T?, onSelect: (T) -> Unit) {
+    if (option != selected) perform(HapticKind.Select)
+    onSelect(option)
+}
 
 /** Handoff window size classes by width: compact < 600 dp, medium 600–839 dp, expanded ≥ 840 dp. */
 enum class WidthClass { Compact, Medium, Expanded }

@@ -38,6 +38,7 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.Alignment
@@ -51,6 +52,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
+import com.techgv.stash.core.designsystem.select
+import com.techgv.stash.core.designsystem.toggle
 import com.techgv.stash.core.designsystem.theme.Stash
 import com.techgv.stash.core.designsystem.theme.StashMotion
 import com.techgv.stash.core.designsystem.theme.motionSpec
@@ -166,6 +169,7 @@ fun <T> SegmentedControl(
     description: (@Composable (T) -> String)? = null,
 ) {
     val c = Stash.colors
+    val haptics = LocalHapticFeedback.current
     val group = rememberRadioGroupFocus()
     val selectedIndex = options.indexOf(selected)
     Row(
@@ -183,7 +187,7 @@ fun <T> SegmentedControl(
                 (if (fill) Modifier.weight(1f) else Modifier.widthIn(min = 44.dp)).heightIn(min = 32.dp)
                     .focusRing(CircleShape).clip(CircleShape).background(bg)
                     .radioGroupOption(group, i, selectedIndex, options.size) { onSelect(options[it]) }
-                    .selectable(on, enabled = enabled, onClick = { onSelect(o) }, role = Role.RadioButton)
+                    .selectable(on, enabled = enabled, onClick = { haptics.select(o, selected, onSelect) }, role = Role.RadioButton)
                     .then(if (spoken != null) Modifier.semantics { contentDescription = spoken } else Modifier)
                     .padding(horizontal = if (fill) Stash.spacing.xxs else Stash.spacing.sm, vertical = 6.dp),
                 contentAlignment = Alignment.Center,
@@ -205,6 +209,7 @@ fun StashSwitch(
     label: String? = null,
 ) {
     val c = Stash.colors
+    val haptics = LocalHapticFeedback.current
     val track by animateColorAsState(if (checked) c.primary else c.inputBorder, motionSpec(tween(StashMotion.SELECT)))
     val x by animateDpAsState(if (checked) 20.dp else 0.dp, motionSpec(StashMotion.switchThumb()))
     Box(
@@ -212,7 +217,7 @@ fun StashSwitch(
             .clip(CircleShape).background(track)
             .then(
                 if (onCheckedChange == null) Modifier
-                else Modifier.toggleable(checked, enabled = enabled, role = Role.Switch, onValueChange = onCheckedChange)
+                else Modifier.toggleable(checked, enabled = enabled, role = Role.Switch) { haptics.toggle(it, onCheckedChange) }
                     .then(if (label != null) Modifier.semantics { contentDescription = label } else Modifier),
             ),
     ) {
