@@ -53,7 +53,7 @@ end
 def extension(project, name, product, bundle_suffix)
   new_target(project, :app_extension, name, product,
     'PRODUCT_NAME' => product,
-    'PRODUCT_BUNDLE_IDENTIFIER' => "com.techgv.stash.Stash$(TEAM_ID).#{bundle_suffix}",
+    'PRODUCT_BUNDLE_IDENTIFIER' => "com.techgv.stash.#{bundle_suffix}",
     'INFOPLIST_FILE' => "#{name}/Info.plist",
     'INFOPLIST_KEY_CFBundleDisplayName' => 'Stash',
     'CODE_SIGN_ENTITLEMENTS' => "#{name}/#{name}.entitlements",

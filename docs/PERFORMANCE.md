@@ -87,3 +87,24 @@ numbers: run the commands above on the physical phone (with the benchmark build 
 Launch, share a link (saved, metadata fetched through Ktor / OkHttp and parsed), open the reader (web page), reader
 mode, search (FTS), settings (theme change), the widget (pinned, shows the shelf; a row opens the reader) and a
 reminder notification (fired by moving the clock to the planned 09:00 slot) all worked. No crash, no keep rule needed.
+
+## Measured on a physical phone (14 Nov, realme RMX5108, Android 16, benchmark build `e3f3a0c`, 60 Hz)
+
+Baseline profile compiled with `cmd package compile -f -m speed-profile` (as installed the status is `verify`).
+
+| Measure | Result | Target | Met | Debug build earlier |
+|---|---|---|---|---|
+| Cold start, 10 items | median 225 ms (214–232), 10 cold runs | < 1 s | yes | 1,063–1,100 ms |
+| Cold start, 50,000 items | median 226 ms (216–238) | < 1 s | yes | — |
+| Cold start as installed, profile not compiled | 247 ms (1 run) | < 1 s | yes | — |
+| Share-to-save, app not running | 178–199 ms (`am start -W`); the save itself 27–43 ms | < 500 ms | yes | 845–871 ms |
+| Share-to-save, app running | 72–81 ms; the save itself 4–22 ms | < 500 ms | yes | 75–102 ms |
+| Scroll jank, 23 items | 1.80–2.41 % (3 runs); 90th percentile 17–24 ms | < 1 % | **no** | 11.7–14.8 % |
+| Scroll jank, 50,000 items | 1.09–1.42 % (3 runs); 90th percentile 16–18 ms | < 1 % | **no** (close) | — |
+| 20 s fling at 50,000 | 1.16 % janky; no blank rows, no jumps past the 240-item window | — | — | — |
+| Memory (total PSS) | shelf 110–127 MB; reader 233–253 MB | — | — | 173 / 270–290 MB |
+| Seed / wipe 50,000 | 6.2 s / 1.7 s | — | — | — |
+
+Search, sort, filter and the 19,000-item archive stayed usable at 50,000 items (rough timings from screenshots: results
+0.5–1 s after the last key, including the 300 ms pause by design). No crash or ANR. The phone drew at 60 Hz although its
+panel supports more; refresh-rate settings were off limits, so jank at a higher rate is not measured.

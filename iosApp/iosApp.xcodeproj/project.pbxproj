@@ -506,7 +506,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).ShareExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.techgv.stash.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -564,7 +564,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).ShareExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = com.techgv.stash.ShareExtension;
 				PRODUCT_NAME = ShareExtension;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -691,7 +691,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = com.techgv.stash.Widget;
 				PRODUCT_NAME = StashWidget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -777,7 +777,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).Widget";
+				PRODUCT_BUNDLE_IDENTIFIER = com.techgv.stash.Widget;
 				PRODUCT_NAME = StashWidget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
