@@ -60,6 +60,8 @@ class ShelfCardRecompositionUiTest {
                 }
             }
         }
+        // The pager loads on its own threads: wait for the three cards, not only for an idle composition.
+        waitUntil(timeoutMillis = 5_000) { trace.toSet().size == 6 }
         waitForIdle()
         assertEquals(setOf("map fresh", "compose fresh", "map older", "compose older", "map oldest", "compose oldest"), trace.toSet())
 

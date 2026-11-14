@@ -82,6 +82,7 @@ class StashJourneyTest {
     fun anAddedLinkOpensInTheReaderAndTheFirstReadCelebratesOnceAfterClosing() =
         journeyTest(seed = { settings { it.copy(readerModeDefault = true) } }) {
             test.onNodeWithText("Add link").performClick()
+            waitForText("Save to shelf")
             test.onNodeWithContentDescription("URL").performTextInput("https://example.org/Slow-reading")
             test.onNodeWithText("Save to shelf").performClick()
             // The pending card: the fetch job is a fake, so its details stay loading.

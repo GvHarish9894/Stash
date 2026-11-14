@@ -3,7 +3,6 @@ package com.techgv.stash.feature.shelf
 import androidx.compose.ui.platform.LocalInputModeManager
 import androidx.compose.ui.input.InputModeManager
 import androidx.compose.ui.input.InputMode
-import androidx.compose.ui.test.waitUntilExactlyOneExists
 import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.requestFocus
 import androidx.compose.runtime.setValue
@@ -44,6 +43,8 @@ import androidx.compose.ui.test.swipeRight
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.LoadState
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.testing.asPagingSourceFactory
@@ -122,6 +123,7 @@ class ShelfScreenUiTest {
         val intents = mutableListOf<ShelfIntent>()
         var selected by mutableStateOf<ItemId?>(null)
         var settle by mutableStateOf<ItemId?>(null)
+        var paged: LazyPagingItems<ShelfListRow>? = null
     }
 
     private fun shelfTest(
@@ -145,6 +147,7 @@ class ShelfScreenUiTest {
                     // A real Pager, so the list reports loading and loaded like the repository's.
                     val paged = remember { Pager(PagingConfig(pageSize = 30), pagingSourceFactory = rows.asPagingSourceFactory()).flow }
                         .collectAsLazyPagingItems()
+                    harness.paged = paged
                     Box(if (fontScale > 1f) Modifier.width(390.dp).fillMaxHeight() else Modifier.fillMaxSize()) {
                         ShelfScreen(
                             harness.state.value, paged, widthClass, { undoTimeout }, {}, { harness.intents += it },
@@ -154,7 +157,11 @@ class ShelfScreenUiTest {
                 }
             }
         }
-        if (manualClock) mainClock.advanceTimeByFrame()
+        // The pager loads on its own threads: without this the first assertion races it on a slow machine.
+        waitUntil(timeoutMillis = 5_000) {
+            harness.paged?.let { it.loadState.refresh is LoadState.NotLoading && (rows.isEmpty() || it.itemCount > 0) } == true
+        }
+        if (manualClock) mainClock.advanceTimeByFrame() else waitForIdle()
         block(harness)
     }
 
@@ -388,12 +395,11 @@ class ShelfScreenUiTest {
     @Test
     fun emptyShelfAndEmptyFilterSayDifferentThings() {
         shelfTest(state = baseState.copy(chips = ChipCounts(0, 0, emptyList()), archiveCount = 0), rows = emptyList()) {
-            // The empty state arrives once the pager reports its first, empty page.
-            waitUntilExactlyOneExists(hasText("Your shelf is empty"), 5_000)
+            onNodeWithText("Your shelf is empty").assertExists()
             onNodeWithText("Swipe left to remove, right to mark read. Long-press for more.").assertDoesNotExist()
         }
         shelfTest(rows = emptyList()) {
-            waitUntilExactlyOneExists(hasText("Nothing matches"), 5_000)
+            onNodeWithText("Nothing matches").assertExists()
             onNodeWithText("Your shelf is empty").assertDoesNotExist()
         }
     }
