@@ -2,6 +2,8 @@ plugins {
     // this is necessary to avoid the plugins to be loaded multiple times
     // in each subproject's classloader
     alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.androidTest) apply false
+    alias(libs.plugins.baselineprofile) apply false
     alias(libs.plugins.androidMultiplatformLibrary) apply false
     alias(libs.plugins.composeMultiplatform) apply false
     alias(libs.plugins.composeCompiler) apply false
@@ -30,8 +32,17 @@ fun allowedProjectDependencies(path: String, allPaths: Set<String>): Set<String>
     path.startsWith(":feature:") -> setOf(model, domain, ":core:designsystem", ":core:resources")
     path == ":shared" -> allPaths - setOf(":shared", ":androidApp", testing)
     path == ":androidApp" -> setOf(":shared")
+    path == ":benchmark" -> setOf(":androidApp")
     else -> null
 }
+
+// Named exceptions to the per-module allowlists, each for exactly one configuration:
+// - D31: the benchmark build type's measurement seeder writes through the app's database; it never ships in release.
+// - The baseline-profile plugin's consumer configuration names the module that generates the profile.
+val configurationExceptions = mapOf(
+    ":androidApp" to "benchmarkImplementation" to setOf(":core:database"),
+    ":androidApp" to "baselineProfile" to setOf(":benchmark"),
+)
 
 // Rule 1 (plus decision D3): the pure modules' main code may use only these external libraries.
 fun isAllowedExternal(path: String, group: String?, name: String): Boolean =
@@ -67,12 +78,16 @@ val moduleGraphViolations = provider {
             val where = "$path (${configuration.name})"
             dependencies.mapNotNull { dependency ->
                 when {
-                    dependency is ProjectDependency ->
-                        if (dependency.path == path || dependency.path in allowed || (isTest && dependency.path == testing)) {
+                    dependency is ProjectDependency -> {
+                        val exception = configurationExceptions[path to configuration.name].orEmpty()
+                        if (dependency.path == path || dependency.path in allowed || dependency.path in exception ||
+                            (isTest && dependency.path == testing)
+                        ) {
                             null
                         } else {
                             "$where -> ${dependency.path}: not allowed"
                         }
+                    }
                     path in setOf(model, domain) && !isTest && dependency is FileCollectionDependency ->
                         "$where -> file dependency: not allowed in a pure module"
                     path in setOf(model, domain) && !isTest && dependency is ExternalModuleDependency &&

@@ -72,11 +72,13 @@ class PathologicalPageTest {
         fun page(sections: Int) = "<html><head><title>T</title></head><body><article>" +
             SyntheticPages.bodyParagraphs.joinToString("") { "<p>$it</p>" }.repeat(2) + "<section></section>".repeat(sections) + "</article></body></html>"
         ReaderExtractor.extract(SyntheticPages.newsArticle, "https://example.com/") // class loading and JIT are not measured
-        val small = page(8_000)
-        val big = page(32_000)
+        // Larger pages and more runs than the reader-block check: these timings are short, and a busy machine once
+        // pushed three runs of a 40 ms page past the bound.
+        val small = page(20_000)
+        val big = page(80_000) // under the 100,000-element cap
 
-        val quick = (1..3).minOf { measureTime { ReaderExtractor.extract(small, "https://example.com/") } }
-        val (article, slow) = (1..3).map { measureTimedValue { ReaderExtractor.extract(big, "https://example.com/") } }.minBy { it.duration }
+        val quick = (1..5).minOf { measureTime { ReaderExtractor.extract(small, "https://example.com/") } }
+        val (article, slow) = (1..5).map { measureTimedValue { ReaderExtractor.extract(big, "https://example.com/") } }.minBy { it.duration }
 
         assertEquals(SyntheticPages.bodyText.length * 2 + 1, article!!.textLength)
         assertTrue(slow / quick < linearGrowth, "4 times the sections took $slow against $quick")
