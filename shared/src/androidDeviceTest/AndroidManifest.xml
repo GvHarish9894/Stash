@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- The test APK has no Application that starts Koin; Android 15 sends BOOT_COMPLETED to an app leaving the
+         stopped state, which reached this receiver before any test had started Koin and crashed the run. -->
+    <application>
+        <receiver
+            android:name="com.techgv.stash.background.SystemEventsReceiver"
+            tools:node="remove" />
+    </application>
+</manifest>

@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Reminder notifications (prototype copy). %1$d unread count, %2$s item title, %3$d minutes, %4$d streak days. -->
+    <string name="reminder_daily_title">Your shelf is waiting</string>
+    <string name="reminder_daily_body">%1$d unread. “%2$s” takes %3$d min and keeps your %4$d-day streak going.</string>
+    <string name="reminder_daily_body_no_minutes">%1$d unread. “%2$s” keeps your %3$d-day streak going.</string>
+    <!-- No streak yet (0 days): %1$d unread count, %2$s item title, %3$d minutes. -->
+    <string name="reminder_daily_body_no_streak">%1$d unread. “%2$s” takes %3$d min.</string>
+    <string name="reminder_daily_body_no_minutes_no_streak">%1$d unread. “%2$s” is waiting.</string>
+
+    <!-- %1$d streak days; body: %1$d minutes. -->
+    <string name="reminder_evening_title">Keep your %1$d-day streak going</string>
+    <string name="reminder_evening_body">You have not read today. One %1$d-minute read is all it takes.</string>
+    <string name="reminder_evening_body_no_minutes">You have not read today. One short read is all it takes.</string>
+
+    <!-- %1$d streak days; body: %1$s item title, %2$d minutes. -->
+    <string name="reminder_late_title">Your %1$d-day streak ends in 2½ hours</string>
+    <string name="reminder_late_body">“%1$s” is %2$d min. Done before bed.</string>
+    <string name="reminder_late_body_no_minutes">Read “%1$s” before bed.</string>
+
+    <!-- %1$d streak days; body: %1$s item title, %2$d minutes. -->
+    <plurals name="reminder_last_call_title">
+        <item quantity="one">Last call: %1$d day on the line</item>
+        <item quantity="other">Last call: %1$d days on the line</item>
+    </plurals>
+    <string name="reminder_last_call_body">Your streak ends at midnight. Tap to read “%1$s” (%2$d min).</string>
+    <string name="reminder_last_call_body_no_minutes">Your streak ends at midnight. Tap to read “%1$s”.</string>
+
+    <!-- Naming: <area>_<what>. Placeholders are positional (%1$s, %1$d). Only the strings in values-es, values-hi and
+         values-ta are translated; everything else falls back to English (decision D10). -->
+
+    <!-- Common -->
+    <string name="app_wordmark">Stash</string>
+    <string name="app_icon_glyph">S</string>
+    <string name="common_close">Close</string>
+    <string name="common_cancel">Cancel</string>
+    <string name="common_done">Done</string>
+    <string name="common_dismiss">Dismiss</string>
+    <string name="common_undo">Undo</string>
+    <string name="common_read_now">Read now</string>
+    <string name="common_later">Later</string>
+    <string name="common_retry">Retry</string>
+    <string name="common_clear">Clear</string>
+    <string name="common_back_to_shelf">Back to shelf</string>
+    <string name="common_back_to_settings">Back to settings</string>
+    <!-- Joins accessibility label parts. -->
+    <string name="common_list_separator">, </string>
+    <plurals name="common_item_count">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+    <plurals name="common_read_item_count">
+        <item quantity="one">%1$d read item</item>
+        <item quantity="other">%1$d read items</item>
+    </plurals>
+
+    <!-- Shelf (home) -->
+    <string name="nav_archive">Archive</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_share_demo">Share</string>
+    <string name="shelf_unread_count">%1$d unread</string>
+    <string name="shelf_search_hint">Search your shelf</string>
+    <string name="shelf_add_link">Add link</string>
+    <!-- %1$s is nav_archive, %2$s is common_item_count. -->
+    <string name="shelf_archive_link_title">%1$s · %2$s</string>
+    <string name="shelf_archive_rule_off">Auto-archive is off</string>
+    <plurals name="shelf_archive_rule_days">
+        <item quantity="one">Read items move here after %1$d day</item>
+        <item quantity="other">Read items move here after %1$d days</item>
+    </plurals>
+    <string name="shelf_empty_title">Your shelf is empty</string>
+    <string name="shelf_empty_body">Share any link to Stash, or tap Add link, and it will be tucked in here.</string>
+    <string name="shelf_no_match_title">Nothing matches</string>
+    <string name="shelf_no_match_body">Try another word or tap All to see your whole shelf.</string>
+
+    <!-- Filter chips: "Medium · 6". -->
+    <string name="chip_all">All</string>
+    <string name="chip_unread">Unread</string>
+    <string name="chip_archived">Archived</string>
+    <string name="chip_label_count">%1$s · %2$d</string>
+    <!-- Opens the sheet with the sources beyond the first 12 chips. -->
+    <string name="chip_more">More…</string>
+    <string name="sources_sheet_title">More sources</string>
+    <string name="sources_sheet_close">Close sources</string>
+
+    <!-- Group headers -->
+    <string name="group_today">Today</string>
+    <string name="group_yesterday">Yesterday</string>
+    <string name="group_this_week">This week</string>
+    <string name="group_last_week">Last week</string>
+    <string name="group_earlier">Earlier</string>
+    <string name="group_this_month">This month</string>
+    <!-- %1$s month name, %2$d year; used for a month in another year. -->
+    <string name="group_month_year">%1$s %2$d</string>
+    <string name="weekday_monday">Monday</string>
+    <string name="weekday_tuesday">Tuesday</string>
+    <string name="weekday_wednesday">Wednesday</string>
+    <string name="weekday_thursday">Thursday</string>
+    <string name="weekday_friday">Friday</string>
+    <string name="weekday_saturday">Saturday</string>
+    <string name="weekday_sunday">Sunday</string>
+    <!-- One-letter labels of the streak week strip. -->
+    <string name="weekday_initial_monday">M</string>
+    <string name="weekday_initial_tuesday">T</string>
+    <string name="weekday_initial_wednesday">W</string>
+    <string name="weekday_initial_thursday">T</string>
+    <string name="weekday_initial_friday">F</string>
+    <string name="weekday_initial_saturday">S</string>
+    <string name="weekday_initial_sunday">S</string>
+    <string name="month_january">January</string>
+    <string name="month_february">February</string>
+    <string name="month_march">March</string>
+    <string name="month_april">April</string>
+    <string name="month_may">May</string>
+    <string name="month_june">June</string>
+    <string name="month_july">July</string>
+    <string name="month_august">August</string>
+    <string name="month_september">September</string>
+    <string name="month_october">October</string>
+    <string name="month_november">November</string>
+    <string name="month_december">December</string>
+    <string name="month_short_january">Jan</string>
+    <string name="month_short_february">Feb</string>
+    <string name="month_short_march">Mar</string>
+    <string name="month_short_april">Apr</string>
+    <string name="month_short_may">May</string>
+    <string name="month_short_june">Jun</string>
+    <string name="month_short_july">Jul</string>
+    <string name="month_short_august">Aug</string>
+    <string name="month_short_september">Sep</string>
+    <string name="month_short_october">Oct</string>
+    <string name="month_short_november">Nov</string>
+    <string name="month_short_december">Dec</string>
+
+    <!-- Card meta line: site · time · length. -->
+    <string name="card_meta_two">%1$s · %2$s</string>
+    <string name="card_meta_three">%1$s · %2$s · %3$s</string>
+    <string name="card_minutes_read">%1$d min read</string>
+    <string name="card_minutes_video">%1$d min video</string>
+    <string name="card_video">video</string>
+    <string name="card_repository">repository</string>
+    <string name="card_archived_at">Archived %1$s</string>
+    <!-- Followed by a Retry button. -->
+    <string name="card_failed_meta">%1$s · Couldn’t load details ·</string>
+    <!-- Card accessibility label: %1$s state, %2$s title, %3$s details. -->
+    <string name="card_a11y_label">%1$s. %2$s. %3$s.</string>
+    <!-- %1$s state, %2$s details status (loading / failed), %3$s title, %4$s details. -->
+    <string name="card_a11y_label_status">%1$s. %2$s. %3$s. %4$s.</string>
+    <string name="card_state_unread">Unread</string>
+    <string name="card_state_read">Read</string>
+    <string name="card_state_archived">Archived</string>
+    <string name="card_state_pending">Loading details</string>
+    <string name="card_state_failed">Couldn’t load details</string>
+    <string name="card_more_options">More options</string>
+
+    <!-- Relative time: short on cards, long in accessibility labels. -->
+    <string name="time_just_now">just now</string>
+    <string name="time_minutes_short">%1$dm ago</string>
+    <string name="time_hours_short">%1$dh ago</string>
+    <string name="time_days_short">%1$dd ago</string>
+    <plurals name="time_minutes_long">
+        <item quantity="one">%1$d minute ago</item>
+        <item quantity="other">%1$d minutes ago</item>
+    </plurals>
+    <plurals name="time_hours_long">
+        <item quantity="one">%1$d hour ago</item>
+        <item quantity="other">%1$d hours ago</item>
+    </plurals>
+    <plurals name="time_days_long">
+        <item quantity="one">%1$d day ago</item>
+        <item quantity="other">%1$d days ago</item>
+    </plurals>
+    <!-- %1$s short month, %2$d day of month, %3$d year. -->
+    <string name="time_date">%1$s %2$d</string>
+    <string name="time_date_year">%1$s %2$d, %3$d</string>
+
+    <!-- Swipe backgrounds and card actions -->
+    <string name="swipe_read">Read</string>
+    <string name="swipe_unread">Unread</string>
+    <string name="swipe_archive">Archive</string>
+    <string name="swipe_share">Share</string>
+    <string name="swipe_remove">Remove</string>
+    <string name="swipe_restore">Restore</string>
+    <string name="swipe_delete">Delete</string>
+
+    <!-- Item options sheet -->
+    <string name="menu_close">Close options</string>
+    <string name="menu_mark_read">Mark as read</string>
+    <string name="menu_mark_unread">Mark as unread</string>
+    <string name="menu_open">Open</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_copy_link">Copy link</string>
+    <string name="menu_archive">Archive</string>
+    <string name="menu_remove">Remove from shelf</string>
+    <string name="menu_restore">Restore to shelf</string>
+    <string name="menu_delete">Delete forever</string>
+
+    <!-- Gesture tip -->
+    <string name="tip_dismiss">Dismiss tip</string>
+    <string name="tip_both">Swipe left to %1$s, right to %2$s. Long-press for more.</string>
+    <string name="tip_left">Swipe left to %1$s. Long-press for more.</string>
+    <string name="tip_right">Swipe right to %1$s. Long-press for more.</string>
+    <string name="tip_none">Long-press for more.</string>
+    <string name="tip_verb_mark_read">mark read</string>
+    <string name="tip_verb_archive">archive</string>
+    <string name="tip_verb_share">share</string>
+    <string name="tip_verb_remove">remove</string>
+
+    <!-- Streak nudge banner: %1$d streak days, %1$s/%2$d item title and minutes. -->
+    <string name="nudge_save_it">Save it</string>
+    <string name="nudge_last_call_title">Last call: your streak ends at midnight</string>
+    <plurals name="nudge_last_call_body">
+        <item quantity="one">One %2$d-min read saves %1$d day.</item>
+        <item quantity="other">One %2$d-min read saves %1$d days.</item>
+    </plurals>
+    <string name="nudge_late_title">%1$d-day streak ends in 2½ hours</string>
+    <string name="nudge_late_body">“%1$s” · %2$d min</string>
+    <string name="nudge_evening_title">You have not read today yet</string>
+    <string name="nudge_daily_title">Keep your %1$d-day streak going</string>
+    <string name="nudge_takes">“%1$s” takes %2$d min.</string>
+    <!-- Item length unknown. -->
+    <string name="nudge_takes_no_minutes">“%1$s” is waiting.</string>
+    <string name="nudge_late_body_no_minutes">“%1$s”</string>
+    <plurals name="nudge_last_call_body_no_minutes">
+        <item quantity="one">One read saves %1$d day.</item>
+        <item quantity="other">One read saves %1$d days.</item>
+    </plurals>
+
+    <!-- Add link sheet -->
+    <string name="add_link_title">Add a link</string>
+    <string name="add_link_clipboard">Link found on your clipboard</string>
+    <!-- The platform says the clipboard holds a link but does not show it until the user asks. -->
+    <string name="add_link_clipboard_hidden">There is a link on your clipboard</string>
+    <string name="add_link_use">Use</string>
+    <string name="add_link_url_label">URL</string>
+    <string name="add_link_url_placeholder">https://</string>
+    <string name="add_link_save">Save to shelf</string>
+    <string name="add_link_error_empty">Paste or type a link first.</string>
+    <string name="add_link_error_invalid">That doesn’t look like a link. Try one that starts with https://</string>
+
+    <!-- Streak chip, sheet and week strip -->
+    <string name="streak_chip_lit">%1$d-day reading streak, today done</string>
+    <string name="streak_chip_unlit">%1$d-day reading streak, not read today</string>
+    <string name="streak_title">%1$d-day reading streak</string>
+    <string name="streak_close">Close streak</string>
+    <string name="streak_status_done">Today’s read is done. See you tomorrow.</string>
+    <string name="streak_status_not_yet">Read one thing before midnight to make it %1$d.</string>
+    <string name="streak_status_nothing_unread">Nothing unread, so your streak is safe today and no reminders will come.</string>
+    <!-- %1$s is one of the streak_reminder_* lines. -->
+    <string name="streak_rule">Open or mark one item as read each day to keep it going. %1$s</string>
+    <string name="streak_reminder_saver">Daily reminder at %1$s, streak saver on.</string>
+    <string name="streak_reminder">Daily reminder at %1$s.</string>
+    <string name="streak_reminder_off">Reminders are off.</string>
+    <string name="streak_reminders">Reminders</string>
+    <string name="streak_read_short">Read something short</string>
+    <string name="streak_day_read">%1$s, read</string>
+    <string name="streak_day_rest">%1$s, rest day</string>
+    <string name="streak_day_not_read">%1$s, not read</string>
+    <string name="streak_day_today_read">%1$s, today, read</string>
+    <string name="streak_day_today_not_read">%1$s, today, not read yet</string>
+
+    <!-- Celebration -->
+    <plurals name="celebration_a11y">
+        <item quantity="one">Streak extended to %1$d day. %2$s</item>
+        <item quantity="other">Streak extended to %1$d days. %2$s</item>
+    </plurals>
+    <string name="celebration_caption">DAY READING STREAK</string>
+    <string name="celebration_keep_reading">Keep reading</string>
+    <string name="celebration_milestone_7">A full week of reading. That is a habit taking root.</string>
+    <string name="celebration_milestone_14">Two weeks straight. Your shelf has noticed.</string>
+    <string name="celebration_milestone_30">Thirty days. Reading is part of your day now.</string>
+    <string name="celebration_milestone_50">Fifty days of showing up. Remarkable.</string>
+    <string name="celebration_milestone_100">One hundred days. You have read your way into a habit.</string>
+    <string name="celebration_message_1">One page at a time. That is how shelves get read.</string>
+    <string name="celebration_message_2">You showed up today. That is the whole trick.</string>
+    <string name="celebration_message_3">Small reads, every day. Your future self is taking notes.</string>
+    <string name="celebration_message_4">Another candle lit. Keep the flame going tomorrow.</string>
+    <string name="celebration_message_5">Today’s read is in the books.</string>
+
+    <!-- In-app reminder preview banner; titles and bodies are the reminder_* strings. -->
+    <string name="notification_preview_header">Stash · %1$s</string>
+    <string name="time_9_00_am">9:00 AM</string>
+    <string name="time_7_00_pm">7:00 PM</string>
+    <string name="time_9_30_pm">9:30 PM</string>
+    <string name="time_11_00_pm">11:00 PM</string>
+
+    <!-- Undo snackbar -->
+    <string name="undo_removed">Removed from your shelf</string>
+    <string name="undo_archived">Moved to Archive</string>
+    <string name="undo_restored">Restored to your shelf</string>
+    <string name="undo_deleted">Deleted from Archive</string>
+
+    <!-- Search -->
+    <string name="search_placeholder">Title or site</string>
+    <string name="search_field_label">Search saved items</string>
+    <string name="search_clear">Clear search</string>
+    <string name="search_recent">Recent searches</string>
+    <string name="search_help">Search looks through titles and site names of everything on your shelf. Your shelf and its filters stay as they were.</string>
+    <string name="search_in_archive">In your archive</string>
+    <string name="search_found_in_archive">Found in your archive</string>
+    <string name="search_no_match_title">No matches on your shelf</string>
+    <string name="search_no_match_body">Try a shorter word, or search by site name like “medium”.</string>
+    <string name="search_open_item">Open %1$s</string>
+    <!-- Result summary: %1$d results, %2$s query, %3$s source or %3$d archived count. -->
+    <plurals name="search_summary">
+        <item quantity="one">%1$d result for “%2$s”</item>
+        <item quantity="other">%1$d results for “%2$s”</item>
+    </plurals>
+    <plurals name="search_summary_with_archived">
+        <item quantity="one">%1$d result for “%2$s” · %3$d archived</item>
+        <item quantity="other">%1$d results for “%2$s” · %3$d archived</item>
+    </plurals>
+    <plurals name="search_summary_in_archive">
+        <item quantity="one">%1$d result for “%2$s” in your archive</item>
+        <item quantity="other">%1$d results for “%2$s” in your archive</item>
+    </plurals>
+    <plurals name="search_summary_in_source">
+        <item quantity="one">%1$d result for “%2$s” in %3$s</item>
+        <item quantity="other">%1$d results for “%2$s” in %3$s</item>
+    </plurals>
+
+    <!-- Archive -->
+    <string name="archive_search_hint">Search the archive</string>
+    <string name="archive_search_clear">Clear archive search</string>
+    <string name="archive_rule_off">Auto-archive is off. Swipe right to restore an item, left to delete it.</string>
+    <plurals name="archive_rule_days">
+        <item quantity="one">Read items move here after %1$d day. Swipe right to restore, left to delete.</item>
+        <item quantity="other">Read items move here after %1$d days. Swipe right to restore, left to delete.</item>
+    </plurals>
+    <string name="archive_empty_title">Nothing archived yet</string>
+    <string name="archive_no_match_body">Try another word, or search by site name.</string>
+    <string name="archive_empty_off">Auto-archive is off. Long-press any item and choose Archive.</string>
+    <plurals name="archive_empty_days">
+        <item quantity="one">Read items move here %1$d day after you read them.</item>
+        <item quantity="other">Read items move here %1$d days after you read them.</item>
+    </plurals>
+
+    <!-- Reader -->
+    <string name="reader_close">Close and return to Stash</string>
+    <string name="reader_mode">Reader mode</string>
+    <string name="reader_mode_glyph">Aa</string>
+    <string name="reader_mark_unread">Mark unread</string>
+    <string name="reader_web_note">The publisher's page renders here, as on the web.</string>
+    <string name="reader_body_note">In the app, the article's own text appears here, cleaned of ads, pop-ups and menus.</string>
+    <string name="reader_ornament">❦</string>
+    <string name="reader_smaller">A−</string>
+    <string name="reader_larger">A+</string>
+    <string name="reader_smaller_label">Smaller text</string>
+    <string name="reader_larger_label">Larger text</string>
+
+    <!-- Quick-save -->
+    <string name="save_title">Tucked into your shelf</string>
+
+    <!-- Settings -->
+    <string name="settings_section_appearance">Appearance</string>
+    <string name="settings_section_reading">Reading</string>
+    <string name="settings_section_streak">Streak and reminders</string>
+    <string name="settings_section_swipe">Swipe gestures</string>
+    <string name="settings_section_shelf">Shelf</string>
+    <string name="settings_section_account">Account and backup</string>
+    <string name="settings_section_data">Your data</string>
+    <string name="settings_section_home">Home screen and language</string>
+    <string name="settings_section_about">About</string>
+    <string name="settings_theme">Theme</string>
+    <string name="settings_accent">Accent colour</string>
+    <string name="settings_accent_body">Buttons, selected chips and links</string>
+    <string name="settings_card_layout">Card layout</string>
+    <string name="settings_card_layout_body">How items look on your shelf and in the archive</string>
+    <string name="settings_text_size">Text size</string>
+    <string name="settings_text_size_sample">Aa — card titles</string>
+    <string name="settings_reduce_motion">Reduce motion</string>
+    <string name="settings_reduce_motion_body">Turns off page and card animations</string>
+    <string name="settings_mark_read_on_open">Mark read when opened</string>
+    <string name="settings_mark_read_on_open_body">Or keep items unread until you mark them</string>
+    <string name="settings_reader_default">Open in reader mode</string>
+    <string name="settings_reader_default_body">Clean serif text instead of the full web page</string>
+    <string name="settings_open_links_in">Open links in</string>
+    <string name="settings_daily_reminder">Daily reminder</string>
+    <string name="settings_daily_reminder_body">A nudge with one short read from your shelf</string>
+    <string name="settings_remind_me">Remind me</string>
+    <string name="settings_streak_saver">Streak saver</string>
+    <string name="settings_streak_saver_body">Up to 3 evening nudges if you have not read yet</string>
+    <string name="settings_preview_reminder">Preview a reminder</string>
+    <string name="settings_preview_reminder_body">See what arrives at each time today</string>
+    <string name="settings_preview_daily">Daily</string>
+    <string name="settings_preview_11pm">11 PM</string>
+    <string name="settings_preview_note">No reminders once you have read today, and none at all when nothing is unread.</string>
+    <string name="settings_reset_today">Reset today (demo)</string>
+    <string name="settings_reset_today_body">Replay the reminders and the streak celebration</string>
+    <string name="settings_swipe_right">Swipe right</string>
+    <string name="settings_swipe_right_body">Drag a card towards the right</string>
+    <string name="settings_swipe_left">Swipe left</string>
+    <string name="settings_swipe_left_body">Drag a card towards the left</string>
+    <string name="settings_swipe_archive_note">In the archive, right always restores and left deletes. Every action is also in the long-press menu.</string>
+    <string name="settings_sort">Sort</string>
+    <string name="settings_sort_body">Order of items on your shelf</string>
+    <string name="settings_group_by">Group by</string>
+    <string name="settings_group_by_body">Headers between items on your shelf</string>
+    <string name="settings_group_by_source_body">Grouped by source while sorting by source</string>
+    <string name="settings_auto_archive">Auto-archive read items</string>
+    <string name="settings_auto_archive_body">Read items move off your shelf after this long. Unread items never move.</string>
+    <plurals name="settings_auto_archive_confirm">
+        <item quantity="one">Move %1$d read item to Archive now?</item>
+        <item quantity="other">Move %1$d read items to Archive now?</item>
+    </plurals>
+    <string name="settings_not_yet">Not yet</string>
+    <string name="settings_move_now">Move now</string>
+    <string name="settings_open_archive">Open archive</string>
+    <string name="settings_show_tip">Show gesture tip again</string>
+    <string name="settings_show_tip_body">Swipe and long-press hints on the shelf</string>
+    <string name="settings_sign_in">Sign in with Google</string>
+    <string name="settings_sign_in_body">Keep your shelf when you change phones</string>
+    <string name="settings_drive_backup">Back up to Google Drive</string>
+    <string name="settings_drive_backup_body">Private app folder in your own Drive</string>
+    <string name="settings_export">Export and import</string>
+    <string name="settings_export_body">Your shelf as a JSON file</string>
+    <string name="settings_badge_phase_2">Phase 2</string>
+    <string name="settings_badge_soon">Soon</string>
+    <string name="settings_clear_read">Clear read items</string>
+    <plurals name="settings_clear_read_body">
+        <item quantity="one">%1$d read item on your shelf</item>
+        <item quantity="other">%1$d read items on your shelf</item>
+    </plurals>
+    <string name="settings_clear_read_none">No read items yet</string>
+    <plurals name="settings_clear_read_confirm">
+        <item quantity="one">Clear %1$d read item?</item>
+        <item quantity="other">Clear %1$d read items?</item>
+    </plurals>
+    <string name="settings_clear_read_detail">They are removed from your shelf and can't be restored.</string>
+    <string name="settings_widget">Home-screen widget</string>
+    <string name="settings_widget_body">Your next unread items and streak, one tap away</string>
+    <string name="settings_app_icon">App icon</string>
+    <string name="settings_app_icon_body">Shown on your home screen and in notifications</string>
+    <string name="settings_language">App language</string>
+    <string name="settings_language_body">Follows your phone unless you pick one</string>
+    <string name="settings_source_code">Source code on GitHub</string>
+    <string name="settings_source_code_url">github.com/GvHarish9894</string>
+    <string name="settings_privacy">Privacy</string>
+    <string name="settings_privacy_body">Everything stays on this device. No account, no tracking.</string>
+    <string name="settings_version">Version</string>
+
+    <!-- Setting option labels -->
+    <string name="theme_auto">Auto</string>
+    <string name="theme_parchment">Parchment</string>
+    <string name="theme_night">Night library</string>
+    <string name="accent_leather">Leather</string>
+    <string name="accent_oxblood">Oxblood</string>
+    <string name="accent_forest">Forest</string>
+    <string name="accent_ink_blue">Ink blue</string>
+    <string name="layout_comfortable">Comfortable</string>
+    <string name="layout_compact">Compact</string>
+    <string name="layout_large_images">Large images</string>
+    <string name="text_size_small">S</string>
+    <string name="text_size_medium">M</string>
+    <string name="text_size_large">L</string>
+    <string name="open_in_app">In-app</string>
+    <string name="open_in_browser">Browser</string>
+    <string name="reminder_time_morning">9 AM</string>
+    <string name="reminder_time_evening">7 PM</string>
+    <string name="sort_newest">Newest</string>
+    <string name="sort_oldest">Oldest</string>
+    <string name="sort_by_source">By source</string>
+    <string name="grouping_day">Day</string>
+    <string name="grouping_week">Week</string>
+    <string name="grouping_month">Month</string>
+    <string name="grouping_none">None</string>
+    <string name="auto_archive_off">Off</string>
+    <plurals name="auto_archive_days">
+        <item quantity="one">%1$d day</item>
+        <item quantity="other">%1$d days</item>
+    </plurals>
+    <string name="widget_size_small">Small 2×2</string>
+    <string name="widget_size_medium">Medium 4×2</string>
+    <string name="language_system">Phone</string>
+    <string name="language_english">English</string>
+    <string name="language_spanish">Español</string>
+    <string name="language_hindi">हिन्दी</string>
+    <string name="language_tamil">தமிழ்</string>
+    <string name="app_icon_leather">Leather</string>
+    <string name="app_icon_night">Night</string>
+    <string name="app_icon_parchment">Parchment</string>
+    <string name="app_icon_ink">Ink</string>
+    <string name="swipe_action_mark_read">Mark read</string>
+    <string name="swipe_action_archive">Archive</string>
+    <string name="swipe_action_share">Share</string>
+    <string name="swipe_action_remove">Remove</string>
+    <string name="swipe_action_nothing">Nothing</string>
+
+    <!-- Widget preview -->
+    <string name="widget_unread_count">· %1$d unread</string>
+    <string name="widget_unread_label">unread</string>
+    <string name="widget_all_caught_up">All caught up. Nothing waiting on your shelf.</string>
+    <string name="widget_all_caught_up_short">All caught up</string>
+    <string name="widget_add">Add to home screen</string>
+
+    <!-- Toasts -->
+    <string name="toast_share_opened">Share sheet opened</string>
+    <string name="toast_link_copied">Link copied</string>
+    <string name="toast_opened_in_browser">Opened in your browser</string>
+    <string name="toast_marked_read">Marked as read</string>
+    <string name="toast_back_on_unread">Back on your unread list</string>
+    <string name="toast_reminder_off">Daily reminder is off</string>
+    <string name="toast_saver_off">Streak saver is off: no evening nudges</string>
+    <string name="toast_no_reminder_read">No reminder: you already read today</string>
+    <string name="toast_no_reminder_empty">No reminder: nothing unread on your shelf</string>
+    <string name="toast_today_reset">Today reset. Preview a reminder.</string>
+    <string name="toast_tip_back">The tip is back on your shelf</string>
+    <string name="toast_archive_later">They will move during the next daily check</string>
+    <string name="toast_auto_archive_off">Read items will stay on your shelf</string>
+    <plurals name="toast_auto_archive_after">
+        <item quantity="one">Read items will move after %1$d day</item>
+        <item quantity="other">Read items will move after %1$d days</item>
+    </plurals>
+    <plurals name="toast_moved_to_archive">
+        <item quantity="one">Moved %1$d read item to Archive</item>
+        <item quantity="other">Moved %1$d read items to Archive</item>
+    </plurals>
+    <string name="toast_nothing_to_clear">Nothing to clear</string>
+    <plurals name="toast_cleared">
+        <item quantity="one">Cleared %1$d read item</item>
+        <item quantity="other">Cleared %1$d read items</item>
+    </plurals>
+    <string name="toast_app_icon_changed">App icon changed to %1$s</string>
+    <string name="toast_pin_requested">Pin request sent to your launcher</string>
+</resources>

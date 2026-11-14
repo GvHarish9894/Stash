@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The widget picker's preview (API 31+): the small layout's wordmark, count and next read, as skeletons. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_preview_surface"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/widget_name"
+        android:textColor="@color/widget_preview_primary"
+        android:textSize="15sp"
+        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/widget_preview_tile"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/widget_preview_tile"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="9dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/widget_preview_tile"
+        android:importantForAccessibility="no" />
+</LinearLayout>

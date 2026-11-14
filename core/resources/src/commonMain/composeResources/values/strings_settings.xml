@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- feature:settings and feature:widgetpreview. English only for now (decision D10). -->
+<resources>
+    <string name="settings_save_failed">Couldn’t save that change. Try again.</string>
+    <string name="settings_preview_no_streak">No streak to save yet: no evening nudges</string>
+    <string name="settings_notifications_denied_body">Reminders can’t arrive until you allow them in your phone’s settings.</string>
+    <string name="settings_open_notification_settings">Open notification settings</string>
+    <string name="settings_app_icon_failed">Couldn’t change the app icon</string>
+    <!-- %1$s is the current language, one of the language_* strings. -->
+    <string name="settings_language_system_body">%1$s. Change it in your phone’s settings for Stash.</string>
+    <string name="settings_sections">Sections</string>
+    <string name="widget_steps_title">Add it from your home screen</string>
+    <string name="widget_steps_body">1. Touch and hold an empty spot on your home screen.\n2. Open the list of widgets.\n3. Find Stash, pick a size and add it.</string>
+</resources>

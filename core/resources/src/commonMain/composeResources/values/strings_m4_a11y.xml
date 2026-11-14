@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Milestone 4 accessibility (lane T4.2). English only: no es / hi / ta translations supplied yet (D10). -->
+    <!-- What a screen reader says for the S / M / L text-size options (handoff: not "S/M/L"). -->
+    <string name="text_size_small_a11y">Small</string>
+    <string name="text_size_medium_a11y">Medium</string>
+    <string name="text_size_large_a11y">Large</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The widget picker preview is static XML and cannot read the design-system tokens: these copy surface, bg,
+     variant and the Leather primary from stashColors (light here, dark in values-night). -->
+<resources>
+    <color name="widget_preview_surface">#FFFAF4E6</color>
+    <color name="widget_preview_bg">#FFF4ECD8</color>
+    <color name="widget_preview_variant">#FFE8DCC0</color>
+    <color name="widget_preview_primary">#FF7A4E2D</color>
+</resources>

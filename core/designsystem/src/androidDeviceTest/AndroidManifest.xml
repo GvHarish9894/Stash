@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- runComposeUiTest launches this activity; it stands in for androidx.compose.ui:ui-test-manifest. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity android:name="androidx.activity.ComponentActivity" android:exported="true" />
+    </application>
+</manifest>

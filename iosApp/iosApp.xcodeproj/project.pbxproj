@@ -6,21 +6,138 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		10573F96596FB25B636ED54C /* inter_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3732839790FC1034EFE3FC3E /* inter_bold.ttf */; };
+		281BF17651D0FAF830A591E4 /* StashWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2FCB43438DA939F9B79B6394 /* StashWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3DEA869AFF6582899B2460F4 /* inter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EC12783087A1C17ACB03DA /* inter_regular.ttf */; };
+		7E35424F774B1A7F285AD23A /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 13AE2DB3C9061E82EB4FD2DA /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9C26AC51C60A097970977991 /* lora_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25A3C5421B95A6ED2C3F216A /* lora_bold.ttf */; };
+		A2DC8B906A4E19D0CDFFBAE6 /* inter_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D8DBFCC13CB39B6DFB23441 /* inter_semibold.ttf */; };
+		A755BC7D62479FB05E19EACA /* lora_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A37D6D028E0AED60064E06FA /* lora_semibold.ttf */; };
+		BF347B98B6EB09EB44CB96E3 /* playfair_bold_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F2BF7B43628F84CA2250961 /* playfair_bold_italic.ttf */; };
+		E7CE657283D04B0A017E209A /* inter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C0EC12783087A1C17ACB03DA /* inter_regular.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		267D05B6FD1003076B1CC91C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 158782DC7D93B01D543A11FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 343B0F4B45BDB87645E15B2E;
+			remoteInfo = WidgetExtension;
+		};
+		E95C40118AB14784309C0436 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 158782DC7D93B01D543A11FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A6243F02CBEE3C9F574F09EC;
+			remoteInfo = ShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DEAB93EC0D4C749CE0BB9F4D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7E35424F774B1A7F285AD23A /* ShareExtension.appex in Embed Foundation Extensions */,
+				281BF17651D0FAF830A591E4 /* StashWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		13AE2DB3C9061E82EB4FD2DA /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		25A3C5421B95A6ED2C3F216A /* lora_bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; path = lora_bold.ttf; sourceTree = "<group>"; };
+		2FCB43438DA939F9B79B6394 /* StashWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StashWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3732839790FC1034EFE3FC3E /* inter_bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; path = inter_bold.ttf; sourceTree = "<group>"; };
+		4F2BF7B43628F84CA2250961 /* playfair_bold_italic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; path = playfair_bold_italic.ttf; sourceTree = "<group>"; };
+		8D8DBFCC13CB39B6DFB23441 /* inter_semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; path = inter_semibold.ttf; sourceTree = "<group>"; };
+		A37D6D028E0AED60064E06FA /* lora_semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; path = lora_semibold.ttf; sourceTree = "<group>"; };
+		BB8C93AD245B108183903788 /* StashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0EC12783087A1C17ACB03DA /* inter_regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; path = inter_regular.ttf; sourceTree = "<group>"; };
 		F4CEC47985DAD9C8C7EC354A /* Stash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6B4E4CC5AA57149AE8C3573C /* Exceptions for "ShareExtension" folder in "ShareExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				ShareExtension.entitlements,
+			);
+			target = A6243F02CBEE3C9F574F09EC /* ShareExtension */;
+		};
+		74F597493DA5A6483EEDB2D9 /* Exceptions for "WidgetExtension" folder in "StashTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				WidgetSnapshot.swift,
+			);
+			target = 188962F39C42B8F84CAF2C5E /* StashTests */;
+		};
+		7B10BE10165A98EE4A0249DA /* Exceptions for "WidgetExtension" folder in "WidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				WidgetExtension.entitlements,
+			);
+			target = 343B0F4B45BDB87645E15B2E /* WidgetExtension */;
+		};
+		B7125CAF585DC405311D7256 /* Exceptions for "ShareExtension" folder in "StashTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				InboxWriter.swift,
+				SharedLink.swift,
+			);
+			target = 188962F39C42B8F84CAF2C5E /* StashTests */;
+		};
 		FEC48B4EB7CA7311C98C10FF /* Exceptions for "iosApp" folder in "iosApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				iosApp.entitlements,
 			);
 			target = 0E58C6D2D665C27EF0F75391 /* iosApp */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		3C5739FEB55C49C89DA7B436 /* ExtensionSupport */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = ExtensionSupport;
+			sourceTree = "<group>";
+		};
+		4AF4E3032F3F7C02BF78929A /* ShareExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6B4E4CC5AA57149AE8C3573C /* Exceptions for "ShareExtension" folder in "ShareExtension" target */,
+				B7125CAF585DC405311D7256 /* Exceptions for "ShareExtension" folder in "StashTests" target */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
+		7949764CA557546E30361C2B /* WidgetExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7B10BE10165A98EE4A0249DA /* Exceptions for "WidgetExtension" folder in "WidgetExtension" target */,
+				74F597493DA5A6483EEDB2D9 /* Exceptions for "WidgetExtension" folder in "StashTests" target */,
+			);
+			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
+		A4E41E9542966AF7C6554775 /* Configuration */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
 		C3B60A70A77EEEF9060E1D6A /* iosApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -29,15 +146,38 @@
 			path = iosApp;
 			sourceTree = "<group>";
 		};
-		A4E41E9542966AF7C6554775 /* Configuration */ = {
+		CD5AD756B049C465A985023C /* StashTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Configuration;
+			exceptions = (
+			);
+			path = StashTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		33A0D180ED23BC0A54178B80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		552D86978B9F243053FCF688 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B6E6F926A25E49E92E52C390 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BFE9458F51A70C5BF2E6BDDA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,12 +187,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A5FA21A285540E1D70EB39D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				25A3C5421B95A6ED2C3F216A /* lora_bold.ttf */,
+				C0EC12783087A1C17ACB03DA /* inter_regular.ttf */,
+				8D8DBFCC13CB39B6DFB23441 /* inter_semibold.ttf */,
+				4F2BF7B43628F84CA2250961 /* playfair_bold_italic.ttf */,
+				A37D6D028E0AED60064E06FA /* lora_semibold.ttf */,
+				3732839790FC1034EFE3FC3E /* inter_bold.ttf */,
+			);
+			name = Fonts;
+			path = ../core/resources/src/commonMain/composeResources/font;
+			sourceTree = "<group>";
+		};
 		AF9CCDEE8CB70656C54E09CA = {
 			isa = PBXGroup;
 			children = (
 				A4E41E9542966AF7C6554775 /* Configuration */,
 				C3B60A70A77EEEF9060E1D6A /* iosApp */,
+				4AF4E3032F3F7C02BF78929A /* ShareExtension */,
+				7949764CA557546E30361C2B /* WidgetExtension */,
+				3C5739FEB55C49C89DA7B436 /* ExtensionSupport */,
+				CD5AD756B049C465A985023C /* StashTests */,
 				FD71839C82BEC73A24F7F087 /* Products */,
+				5A5FA21A285540E1D70EB39D /* Fonts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +219,9 @@
 			isa = PBXGroup;
 			children = (
 				F4CEC47985DAD9C8C7EC354A /* Stash.app */,
+				13AE2DB3C9061E82EB4FD2DA /* ShareExtension.appex */,
+				2FCB43438DA939F9B79B6394 /* StashWidget.appex */,
+				BB8C93AD245B108183903788 /* StashTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,20 +237,83 @@
 				734D71E4F749A19943788991 /* Sources */,
 				B6E6F926A25E49E92E52C390 /* Frameworks */,
 				36428BB5C8064261D877513F /* Resources */,
+				DEAB93EC0D4C749CE0BB9F4D /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9D5AE7B4017CD28702873638 /* PBXTargetDependency */,
+				86A01C5CD167C01F233A6955 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C3B60A70A77EEEF9060E1D6A /* iosApp */,
+			);
+			name = iosApp;
+			productName = iosApp;
+			productReference = F4CEC47985DAD9C8C7EC354A /* Stash.app */;
+			productType = "com.apple.product-type.application";
+		};
+		188962F39C42B8F84CAF2C5E /* StashTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B217F2BECD4B2BDD96EE9C5D /* Build configuration list for PBXNativeTarget "StashTests" */;
+			buildPhases = (
+				8CC1199F16952CEB2B68A059 /* Sources */,
+				BFE9458F51A70C5BF2E6BDDA /* Frameworks */,
+				35188D3B3FC3FB9C7890D11A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C3B60A70A77EEEF9060E1D6A /* iosApp */,
+				CD5AD756B049C465A985023C /* StashTests */,
 			);
-			name = iosApp;
-			packageProductDependencies = (
+			name = StashTests;
+			productName = StashTests;
+			productReference = BB8C93AD245B108183903788 /* StashTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		343B0F4B45BDB87645E15B2E /* WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2005DADF6CB8E32D1489BEAA /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
+			buildPhases = (
+				1D35DADF1DF5D5D8FBDAA4B9 /* Sources */,
+				552D86978B9F243053FCF688 /* Frameworks */,
+				55E28C71E29A8E622F259566 /* Resources */,
 			);
-			productName = iosApp;
-			productReference = F4CEC47985DAD9C8C7EC354A /* Stash.app */;
-			productType = "com.apple.product-type.application";
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7949764CA557546E30361C2B /* WidgetExtension */,
+				3C5739FEB55C49C89DA7B436 /* ExtensionSupport */,
+			);
+			name = WidgetExtension;
+			productName = StashWidget;
+			productReference = 2FCB43438DA939F9B79B6394 /* StashWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		A6243F02CBEE3C9F574F09EC /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C34DC659C73A289F64184B1B /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				AF1C29B02C6C54CA66DA10C9 /* Sources */,
+				33A0D180ED23BC0A54178B80 /* Frameworks */,
+				1C818FE6D44FEE6313A2BEC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4AF4E3032F3F7C02BF78929A /* ShareExtension */,
+				3C5739FEB55C49C89DA7B436 /* ExtensionSupport */,
+			);
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = 13AE2DB3C9061E82EB4FD2DA /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -120,15 +345,46 @@
 			projectRoot = "";
 			targets = (
 				0E58C6D2D665C27EF0F75391 /* iosApp */,
+				A6243F02CBEE3C9F574F09EC /* ShareExtension */,
+				343B0F4B45BDB87645E15B2E /* WidgetExtension */,
+				188962F39C42B8F84CAF2C5E /* StashTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1C818FE6D44FEE6313A2BEC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9C26AC51C60A097970977991 /* lora_bold.ttf in Resources */,
+				E7CE657283D04B0A017E209A /* inter_regular.ttf in Resources */,
+				A2DC8B906A4E19D0CDFFBAE6 /* inter_semibold.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		35188D3B3FC3FB9C7890D11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		36428BB5C8064261D877513F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55E28C71E29A8E622F259566 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF347B98B6EB09EB44CB96E3 /* playfair_bold_italic.ttf in Resources */,
+				A755BC7D62479FB05E19EACA /* lora_semibold.ttf in Resources */,
+				3DEA869AFF6582899B2460F4 /* inter_regular.ttf in Resources */,
+				10573F96596FB25B636ED54C /* inter_bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +413,28 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1D35DADF1DF5D5D8FBDAA4B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		734D71E4F749A19943788991 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CC1199F16952CEB2B68A059 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AF1C29B02C6C54CA66DA10C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -166,7 +443,155 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		86A01C5CD167C01F233A6955 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = WidgetExtension;
+			target = 343B0F4B45BDB87645E15B2E /* WidgetExtension */;
+			targetProxy = 267D05B6FD1003076B1CC91C /* PBXContainerItemProxy */;
+		};
+		9D5AE7B4017CD28702873638 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ShareExtension;
+			target = A6243F02CBEE3C9F574F09EC /* ShareExtension */;
+			targetProxy = E95C40118AB14784309C0436 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		06E25B8FAEE9D0F40B9031F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Night AppIcon-Parchment AppIcon-Ink";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iosApp/iosApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6501B65215C60CC1E7547FF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Stash;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).ShareExtension";
+				PRODUCT_NAME = ShareExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6E8C08ADE3CD9A219B9F6612 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Night AppIcon-Parchment AppIcon-Ink";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iosApp/iosApp.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		80EC7593EB06E6AEE88859C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Stash;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).ShareExtension";
+				PRODUCT_NAME = ShareExtension;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		87193993A80398A96CAE13DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techgv.stash.StashTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		996B70B00931C1285D652D86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = A4E41E9542966AF7C6554775 /* Configuration */;
@@ -232,6 +657,51 @@
 			};
 			name = Debug;
 		};
+		AF5A9D8DA74250FBF7782316 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.techgv.stash.StashTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C502880A78ED19252D81EA1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = WidgetExtension/WidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Stash;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).Widget";
+				PRODUCT_NAME = StashWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		DA84CB4EDBB04B4BA288B100 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReferenceAnchor = A4E41E9542966AF7C6554775 /* Configuration */;
@@ -290,65 +760,45 @@
 			};
 			name = Release;
 		};
-		6E8C08ADE3CD9A219B9F6612 /* Debug */ = {
+		DD55EC3ED4CD54CD180D14FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = WidgetExtension/WidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				DEVELOPMENT_TEAM = "${TEAM_ID}";
-				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iosApp/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_FILE = WidgetExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Stash;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.techgv.stash.Stash$(TEAM_ID).Widget";
+				PRODUCT_NAME = StashWidget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		06E25B8FAEE9D0F40B9031F3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = arm64;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "${TEAM_ID}";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = iosApp/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2005DADF6CB8E32D1489BEAA /* Build configuration list for PBXNativeTarget "WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C502880A78ED19252D81EA1B /* Release */,
+				DD55EC3ED4CD54CD180D14FD /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		52D965BA68222CFF340A7883 /* Build configuration list for PBXProject "iosApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -363,6 +813,24 @@
 			buildConfigurations = (
 				6E8C08ADE3CD9A219B9F6612 /* Debug */,
 				06E25B8FAEE9D0F40B9031F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B217F2BECD4B2BDD96EE9C5D /* Build configuration list for PBXNativeTarget "StashTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87193993A80398A96CAE13DC /* Release */,
+				AF5A9D8DA74250FBF7782316 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C34DC659C73A289F64184B1B /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6501B65215C60CC1E7547FF0 /* Release */,
+				80EC7593EB06E6AEE88859C9 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

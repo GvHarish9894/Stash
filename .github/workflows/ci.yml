@@ -1,0 +1,37 @@
+# Never run yet: nothing has been pushed since this file was written. Check the first run.
+# One macOS job, because the iOS simulator tests and the iOS app build need Xcode.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      # Unit and UI tests on JVM, Android host and the iOS simulator, plus checkModuleGraph and the coverage gate.
+      - run: ./gradlew check --continue
+      - run: ./gradlew :androidApp:assembleDebug
+      - name: Build the iOS app for the simulator
+        run: >
+          xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Debug
+          -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath build/ios ARCHS=arm64 CODE_SIGNING_ALLOWED=NO -quiet build
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: test-reports
+          path: '**/build/reports/tests/**'

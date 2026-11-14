@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Reader (feature:reader). English only: no es / hi / ta translations supplied yet (D10). -->
+    <!-- Handoff: "Reader mode can't extract text". -->
+    <string name="reader_unavailable">Reader mode isn’t available for this page.</string>
+    <!-- Handoff offline copy, split into the message's title and body. -->
+    <string name="reader_offline_title">You’re offline.</string>
+    <string name="reader_offline_body">This page will open when you’re back online.</string>
+    <!-- Button under the offline message of the web page; opens the link in the browser. -->
+    <string name="reader_open_in_browser">Open in browser</string>
+    <!-- The item was deleted after a widget row or notification pointed at it. -->
+    <string name="reader_missing_title">This link is gone</string>
+    <string name="reader_missing_body">It was removed from Stash, so there is nothing to open.</string>
+    <!-- Detail pane on wide screens before an item is picked. -->
+    <string name="reader_empty_title">Nothing open yet</string>
+    <string name="reader_empty_body">Pick a link from your shelf to read it here.</string>
+    <!-- A change could not be saved (storage failure). -->
+    <string name="reader_action_failed">That didn’t save. Try again.</string>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <!-- Widget text that core:resources has no string for; the rest comes from there (WidgetText). -->
+    <string name="widget_name">Stash</string>
+    <string name="widget_description_medium">Your next three reads, unread count and reading streak</string>
+    <string name="widget_description_small">Your unread count, reading streak and next read</string>
+    <string name="widget_meta_minutes">%1$s · %2$d min</string>
+</resources>
