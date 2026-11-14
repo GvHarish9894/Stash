@@ -1,0 +1,16 @@
+# Part 1 of the resize check: change state, then scripts/e2e.sh resizes the display.
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: android-resize-before
+tags:
+  - android
+  - resize
+---
+- runFlow: ../helpers/launch.yaml
+- swipe:
+    from:
+      id: "item-c"
+    direction: LEFT
+- assertVisible: "All · 5"
+- tapOn: "Settings"
+- tapOn: "Night library"
+- takeScreenshot: resize-before

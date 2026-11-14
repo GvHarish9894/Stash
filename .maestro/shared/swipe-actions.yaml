@@ -1,0 +1,27 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: swipe-actions
+tags:
+  - smoke
+---
+- runFlow: ../helpers/launch.yaml
+# Swipe left removes; Undo brings it back
+- swipe:
+    from:
+      id: "item-c"
+    direction: LEFT
+- assertVisible: "Removed from your shelf"
+- assertVisible: "All · 5"
+- takeScreenshot: swipe-removed
+- tapOn: "Undo"
+- assertVisible: "All · 6"
+- assertVisible:
+    id: "item-c"
+# Swipe right marks read and lights the streak
+- swipe:
+    from:
+      id: "item-a"
+    direction: RIGHT
+- runFlow: ../helpers/dismiss-celebration.yaml
+- assertVisible: "13-day reading streak, today done"
+- assertVisible: "Read\\. Designing for slow reading.*"
+- takeScreenshot: swipe-read

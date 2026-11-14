@@ -1,0 +1,39 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: archive-restore
+---
+- runFlow: ../helpers/launch.yaml
+- longPressOn:
+    id: "item-b"
+- assertVisible: "Remove from shelf"
+- takeScreenshot: item-menu
+- tapOn:
+    text: "Archive"
+    below: "Copy link"
+- assertVisible: "Moved to Archive"
+- scrollUntilVisible:
+    element: "Archive · 4 items"
+    direction: DOWN
+- tapOn: "Archive · 4 items"
+- assertVisible: "Search the archive"
+- assertVisible:
+    id: "item-b"
+- takeScreenshot: archive
+# In the archive, swipe right restores
+- swipe:
+    from:
+      id: "item-b"
+    direction: RIGHT
+- assertVisible: "Restored to your shelf"
+# Delete from the archive, then undo
+- swipe:
+    from:
+      id: "item-g"
+    direction: LEFT
+- assertVisible: "Deleted from Archive"
+- tapOn: "Undo"
+- assertVisible:
+    id: "item-g"
+- tapOn: "Back to shelf"
+- assertVisible: "Search your shelf"
+- assertVisible:
+    id: "item-b"

@@ -1,0 +1,18 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: lifecycle
+---
+- runFlow: ../helpers/launch.yaml
+- swipe:
+    from:
+      id: "item-c"
+    direction: LEFT
+- assertVisible: "All · 5"
+- tapOn: "Settings"
+- assertVisible: "APPEARANCE"
+# Background, then return: same screen, same data
+- pressKey: Home
+- launchApp:
+    stopApp: false
+- assertVisible: "APPEARANCE"
+- tapOn: "Back to shelf"
+- assertVisible: "All · 5"

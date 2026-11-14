@@ -1,0 +1,21 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: search
+---
+- runFlow: ../helpers/launch.yaml
+- tapOn: "Search your shelf"
+- assertVisible: "RECENT SEARCHES"
+- inputText: "design"
+- assertVisible: "2 results for “design” · 1 archived"
+- assertVisible: "IN YOUR ARCHIVE"
+- takeScreenshot: search-results
+# No matches
+- tapOn: "Clear search"
+- inputText: "zzzz"
+- assertVisible: "No matches.*"
+- takeScreenshot: search-empty
+# Recent search
+- tapOn: "Clear search"
+- tapOn: "room"
+- assertVisible: "1 result for “room”"
+- tapOn: "Back to shelf"
+- assertVisible: "Search your shelf"

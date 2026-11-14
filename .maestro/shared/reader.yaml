@@ -1,0 +1,24 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: reader
+---
+- runFlow: ../helpers/launch.yaml
+- tapOn:
+    id: "item-a"
+- assertVisible: "Mark unread"
+- extendedWaitUntil:
+    visible: "Marked as read"
+    timeout: 5000
+- takeScreenshot: reader-web
+- tapOn: "Reader mode.*"
+- assertVisible: "Larger text.*"
+- tapOn: "Larger text.*"
+- takeScreenshot: reader-clean
+- tapOn: "Close and return to Stash"
+- runFlow: ../helpers/dismiss-celebration.yaml
+- assertVisible: "Read\\. Designing for slow reading.*"
+# Mark unread from the reader
+- tapOn:
+    id: "item-a"
+- tapOn: "Mark unread"
+- tapOn: "Close and return to Stash"
+- assertVisible: "Unread\\. Designing for slow reading.*"

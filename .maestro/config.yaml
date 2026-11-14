@@ -1,0 +1,7 @@
+# Workspace config. Run through scripts/e2e.sh, which sets APP_ID and the device.
+flows:
+  - "shared/*"
+  - "android/*"
+  - "ios/*"
+excludeTags:
+  - resize # two-part flows driven by `scripts/e2e.sh android-resize`

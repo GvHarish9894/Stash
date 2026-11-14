@@ -1,0 +1,12 @@
+# Clean start on the shelf. Every flow begins here so order never matters.
+# ORIENTATION: PORTRAIT (default) | LANDSCAPE_LEFT | LANDSCAPE_RIGHT
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+env:
+  ORIENTATION: ${ORIENTATION || 'PORTRAIT'}
+---
+- launchApp:
+    clearState: true
+- setOrientation: ${ORIENTATION}
+- extendedWaitUntil:
+    visible: "Search your shelf"
+    timeout: 20000

@@ -1,0 +1,28 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: save-link
+tags:
+  - smoke
+---
+- runFlow: ../helpers/launch.yaml
+- tapOn: "Add link"
+- assertVisible: "Add a link"
+# Empty and invalid input are rejected
+- tapOn: "Save to shelf"
+- assertVisible: "Add a link"
+- tapOn: "https://"
+- inputText: "notalink"
+- tapOn: "Save to shelf"
+- assertVisible: "That doesn’t look like a link.*"
+- takeScreenshot: add-link-error
+# A valid link lands on the shelf
+- eraseText: 20
+- inputText: "kotlinlang.org/docs"
+- tapOn: "Save to shelf"
+- assertVisible: ".*kotlinlang.org/docs.*"
+- assertVisible: "All · 7"
+# Share demo
+- tapOn: "Share"
+- assertVisible: "Tucked into your shelf"
+- takeScreenshot: share-saved
+- tapOn: "Done"
+- assertVisible: ".*The quiet return of serif type.*"

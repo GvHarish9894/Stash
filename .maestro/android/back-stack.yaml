@@ -1,0 +1,30 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: android-back-stack
+tags:
+  - android
+---
+- runFlow: ../helpers/launch.yaml
+# Back closes a sheet before it leaves a screen
+- tapOn: "Add link"
+- assertVisible: "Add a link"
+- back
+- assertNotVisible: "Add a link"
+- assertVisible: "Search your shelf"
+# Settings → Widget → back → back
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element: "Home-screen widget"
+    direction: DOWN
+- tapOn: "Home-screen widget"
+- assertVisible: "Add to home screen"
+- back
+- assertVisible: "Home-screen widget"
+- back
+- assertVisible: "Search your shelf"
+# Reader → back
+- tapOn:
+    id: "item-a"
+- assertVisible: "Mark unread"
+- back
+- runFlow: ../helpers/dismiss-celebration.yaml
+- assertVisible: "Search your shelf"

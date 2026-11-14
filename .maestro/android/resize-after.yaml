@@ -1,0 +1,14 @@
+# Part 2: no relaunch. Screen, theme choice and shelf data must survive the resize.
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: android-resize-after
+tags:
+  - android
+  - resize
+---
+- assertVisible: "APPEARANCE"
+- takeScreenshot: resize-after
+- tapOn: "Back to shelf"
+- assertVisible: "All · 5"
+- assertNotVisible:
+    id: "item-c"
+- takeScreenshot: resize-after-shelf

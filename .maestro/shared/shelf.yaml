@@ -1,0 +1,28 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: shelf
+---
+- runFlow: ../helpers/launch.yaml
+# Source filter
+- tapOn: "Unread · 5"
+- assertNotVisible:
+    id: "item-e"
+- tapOn: "All · 6"
+# Scroll to the end of the list
+- scrollUntilVisible:
+    element: "Archive · 3 items"
+    direction: DOWN
+- takeScreenshot: shelf-end
+# Empty state: remove every item
+- repeat:
+    while:
+      visible:
+        id: "item-.*"
+    commands:
+      - swipe:
+          from:
+            id: "item-.*"
+            index: 0
+          direction: LEFT
+      - waitForAnimationToEnd
+- assertVisible: "Your shelf is empty"
+- takeScreenshot: shelf-empty

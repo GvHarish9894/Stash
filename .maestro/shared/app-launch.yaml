@@ -1,0 +1,13 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: app-launch
+tags:
+  - smoke
+---
+- runFlow: ../helpers/launch.yaml
+- assertVisible: "Stash"
+- assertVisible: "All · 6"
+- assertVisible: "12-day reading streak, not read today"
+- assertVisible: "Add link"
+- assertVisible:
+    id: "item-a"
+- takeScreenshot: app-launch

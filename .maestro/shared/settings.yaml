@@ -1,0 +1,29 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: settings
+---
+- runFlow: ../helpers/launch.yaml
+- tapOn: "Settings"
+- assertVisible: "APPEARANCE"
+- tapOn: "Night library"
+- tapOn: "Forest"
+- tapOn: "Compact"
+- takeScreenshot: settings-dark
+- scrollUntilVisible:
+    element: "Home-screen widget"
+    direction: DOWN
+- tapOn: "Home-screen widget"
+- assertVisible: "Add to home screen"
+- tapOn: "Small 2×2"
+- takeScreenshot: widget-preview
+- tapOn: "Add to home screen"
+- assertVisible: "Pin request sent to your launcher"
+- tapOn: "Back to settings"
+- scrollUntilVisible:
+    element: "Español"
+    direction: DOWN
+- tapOn: "Español"
+- tapOn: "Back to shelf"
+# Settings apply to the shelf and survive navigation
+- assertVisible: "Busca en tu estante"
+- assertVisible: "HOY"
+- takeScreenshot: shelf-es-dark-compact

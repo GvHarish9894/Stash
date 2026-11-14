@@ -1,0 +1,7 @@
+# The first read of the day shows the streak celebration; close it.
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+---
+- extendedWaitUntil:
+    visible: "Keep reading"
+    timeout: 6000
+- tapOn: "Keep reading"

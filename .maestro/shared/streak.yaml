@@ -1,0 +1,21 @@
+appId: "${maestro.platform == 'ios' ? 'com.techgv.stash.Stash' : 'com.techgv.stash'}"
+name: streak
+---
+- runFlow: ../helpers/launch.yaml
+- tapOn: "12-day reading streak, not read today"
+- assertVisible: "12-day reading streak"
+- takeScreenshot: streak-unlit
+- tapOn: "Close"
+- swipe:
+    from:
+      id: "item-a"
+    direction: RIGHT
+- extendedWaitUntil:
+    visible: "Keep reading"
+    timeout: 6000
+- takeScreenshot: streak-celebration
+- tapOn: "Keep reading"
+- tapOn: "13-day reading streak, today done"
+- assertVisible: "Today’s read is done. See you tomorrow."
+- takeScreenshot: streak-lit
+- tapOn: "Close"
