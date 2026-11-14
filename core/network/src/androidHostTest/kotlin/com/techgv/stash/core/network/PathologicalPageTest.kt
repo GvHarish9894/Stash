@@ -7,6 +7,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.measureTime
 import kotlin.time.measureTimedValue
 
 /**
@@ -43,35 +44,41 @@ class PathologicalPageTest {
         assertTrue(elapsed < bound, "took $elapsed")
     }
 
-    // Before the fix ReaderBlocks.parse took 4.1 s and 2.0 s on these (verifier, desktop JVM), growing as n^1.9.
-    private val brAfterItalic = "<p>" + "<i>x</i><br>".repeat(49_000)
-    private val brAfterBold = "<p>" + "<b>x</b><br>".repeat(33_000)
+    // Before the fix ReaderBlocks.parse took 4.1 s and 2.0 s on the larger of these (verifier, desktop JVM), growing as n^1.9.
+    // The checks compare a page with one four times its size, so they hold on a slow machine: linear work grows about
+    // 4 times, the old behaviour about 14 times.
+    private val linearGrowth = 8.0
+
+    private fun brAfter(tag: String, count: Int) = "<p>" + "<$tag>x</$tag><br>".repeat(count)
 
     @Test
     fun readerBlocksStayLinearWithABreakAfterEveryStyledWord() = runTest {
         ReaderBlocks.parse("<p><i>x</i><br>".repeat(1_000)) // class loading and JIT are not what this measures
-        for (html in listOf(brAfterItalic, brAfterBold)) {
-            val (blocks, elapsed) = measureTimedValue { ReaderBlocks.parse(html) }
+        for ((tag, count) in listOf("i" to 49_000, "b" to 33_000)) {
+            val small = brAfter(tag, count / 4)
+            val big = brAfter(tag, count)
+            val quick = (1..3).minOf { measureTime { ReaderBlocks.parse(small) } }
+            val (blocks, slow) = (1..3).map { measureTimedValue { ReaderBlocks.parse(big) } }.minBy { it.duration }
 
             val paragraph = assertIs<ReaderBlock.Paragraph>(blocks.single())
             assertTrue(paragraph.text.spans.size > 30_000)
-            assertTrue(elapsed < styledBreaksBound, "took $elapsed")
+            assertTrue(slow / quick < linearGrowth, "4 times the page took $slow against $quick")
         }
     }
-
-    /** A tenth of the 4.1 s measured before the fix. */
-    private val styledBreaksBound = 410.milliseconds
 
     @Test
     fun extractorCleanStepStaysLinearOnManyEmptySections() = runTest {
         // Ksoup.clean pretty-printed its output, quadratic on blank text nodes: 32,000 empty sections took 2.1 s.
-        val page = "<html><head><title>T</title></head><body><article>" +
-            SyntheticPages.bodyParagraphs.joinToString("") { "<p>$it</p>" }.repeat(2) + "<section></section>".repeat(32_000) + "</article></body></html>"
+        fun page(sections: Int) = "<html><head><title>T</title></head><body><article>" +
+            SyntheticPages.bodyParagraphs.joinToString("") { "<p>$it</p>" }.repeat(2) + "<section></section>".repeat(sections) + "</article></body></html>"
         ReaderExtractor.extract(SyntheticPages.newsArticle, "https://example.com/") // class loading and JIT are not measured
+        val small = page(8_000)
+        val big = page(32_000)
 
-        val (article, elapsed) = measureTimedValue { ReaderExtractor.extract(page, "https://example.com/") }
+        val quick = (1..3).minOf { measureTime { ReaderExtractor.extract(small, "https://example.com/") } }
+        val (article, slow) = (1..3).map { measureTimedValue { ReaderExtractor.extract(big, "https://example.com/") } }.minBy { it.duration }
 
         assertEquals(SyntheticPages.bodyText.length * 2 + 1, article!!.textLength)
-        assertTrue(elapsed < 500.milliseconds, "took $elapsed")
+        assertTrue(slow / quick < linearGrowth, "4 times the sections took $slow against $quick")
     }
 }

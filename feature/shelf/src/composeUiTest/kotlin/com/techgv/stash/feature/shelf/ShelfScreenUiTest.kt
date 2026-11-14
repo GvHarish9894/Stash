@@ -3,6 +3,7 @@ package com.techgv.stash.feature.shelf
 import androidx.compose.ui.platform.LocalInputModeManager
 import androidx.compose.ui.input.InputModeManager
 import androidx.compose.ui.input.InputMode
+import androidx.compose.ui.test.waitUntilExactlyOneExists
 import androidx.compose.ui.test.assertIsFocused
 import androidx.compose.ui.test.requestFocus
 import androidx.compose.runtime.setValue
@@ -387,11 +388,12 @@ class ShelfScreenUiTest {
     @Test
     fun emptyShelfAndEmptyFilterSayDifferentThings() {
         shelfTest(state = baseState.copy(chips = ChipCounts(0, 0, emptyList()), archiveCount = 0), rows = emptyList()) {
-            onNodeWithText("Your shelf is empty").assertExists()
+            // The empty state arrives once the pager reports its first, empty page.
+            waitUntilExactlyOneExists(hasText("Your shelf is empty"), 5_000)
             onNodeWithText("Swipe left to remove, right to mark read. Long-press for more.").assertDoesNotExist()
         }
         shelfTest(rows = emptyList()) {
-            onNodeWithText("Nothing matches").assertExists()
+            waitUntilExactlyOneExists(hasText("Nothing matches"), 5_000)
             onNodeWithText("Your shelf is empty").assertDoesNotExist()
         }
     }
