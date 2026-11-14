@@ -284,7 +284,7 @@ class SettingsViewModel(
     }
 
     companion object {
-        const val SOURCE_CODE_URL = "https://github.com/GvHarish9894"
+        const val SOURCE_CODE_URL = "https://github.com/GvHarish9894/Stash"
 
         /** How long a settings toast stays (the prototype's 1.8 s). */
         val TOAST_DURATION: Duration = 1_800.milliseconds
