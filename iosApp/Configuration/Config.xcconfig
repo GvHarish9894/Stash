@@ -4,7 +4,7 @@ PRODUCT_NAME=Stash
 PRODUCT_BUNDLE_IDENTIFIER=com.techgv.stash
 
 CURRENT_PROJECT_VERSION=1
-MARKETING_VERSION=1.0
+MARKETING_VERSION=1.0.0
 
 // Machine-local settings that must not be committed, such as TEAM_ID for signing on a device.
 #include? "Local.xcconfig"
